@@ -21,19 +21,18 @@ if(isset($_FILES['imagem'])){
 
 
 //Pega o índice
-$id =  $_POST['indice'] ?? false;
-$tipo = $_POST['tipo'] ?? false;
+$id =  $_GET['indice'] ?? false;
+$tipo = $_GET['tipo'] ?? false;
 
 
-
-//Realiza o altera DOS niveis de ensino
-function altera_nivel($nome_nivel)
+//Realiza o select DOS niveis de ensino
+function select_nivel($id)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE id = :id");
+        $sql = $conex->prepare("WHERE id = :id");
 
-        $sql->bindParam(':nome', $nome_nivel);
 
+        $sql->bindParam(':id', $id);
         $sql->execute();
 
 
@@ -41,8 +40,8 @@ require('pdo.inc.php');
 }
 
     //----------------------------------------------------------------------------------
-//Realiza o altera DOS cursos
-function altera_curso($nome_curso, $nivel_ensino)
+//Realiza o select DOS cursos
+function select_curso($id)
 {
 require('pdo.inc.php');
         $sql = $conex->prepare("UPDATE curso SET nome_curso = :nome, nivel_ensino_idNivel_ensino = :idnivel  WHERE id = :id");
@@ -57,8 +56,8 @@ require('pdo.inc.php');
 }
 
     //----------------------------------------------------------------------------------
-//Realiza o altera Das turmas
-function altera_turma($nome_turma, $idcurso)
+//Realiza o select Das turmas
+function select_turma($nome_turma, $idcurso)
 {
 require('pdo.inc.php');
         $sql = $conex->prepare("UPDATE turma SET nome_turma = :nome, cursos_idcursos = :idcurso  WHERE id = :id");
@@ -73,13 +72,13 @@ require('pdo.inc.php');
 
     //----------------------------------------------------------------------------------
   
-//altera aluno
-function altera_aluno($nome_aluno, $data_nasc,  $foto, $idturma)
+//select aluno
+function select_aluno($nome_aluno, $data_nasc,  $foto, $idturma)
 {
 require('pdo.inc.php');
        
 
-        //Realiza o altera DOS JOGADORES
+        //Realiza o select DOS JOGADORES
         $sql = $PDO->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma  WHERE id = :id");
 
         $sql->bindParam(':nome', $nome_aluno);
@@ -97,32 +96,7 @@ require('pdo.inc.php');
 
 }
 
-if(!isset($tipo)){
-    header("Location: index.php");
-}
-    
 
-if ($tipo == 'aluno'){
-    altera_aluno( $_POST['nome'], $_POST['data_nasc'], $diretorio.$img['name'], $_POST['idturma']);
-    // Redireciona para a página inicial
-    header('Location: index.php');
-    die;
-}elseif($tipo == 'turma'){
-    altera_turma($_POST['nome_turma'], $_POST['idcurso']);
-     // Redireciona para a página inicial
-    header('Location: index.php');
-    die;
-}
-elseif($tipo == 'curso'){
-    altera_curso( $_POST['nome_curso'], $_POST['nivel_ensino']);
-    // Redireciona para a página inicial
-    header('Location: index.php');
-    die;
-}
-elseif($tipo == 'nivel'){
-    altera_nivel( $_POST['nome_nivel']);
-    // Redireciona para a página inicial
-    header('Location: index.php');
-    die;
-};
+$tipo = $_POST['tipo'] ?? false;
+
 

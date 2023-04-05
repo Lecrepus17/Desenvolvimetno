@@ -2,7 +2,7 @@
 
 
 require('func/sanitize_filename.php');
-
+$tipo = $_POST['tipo'] ?? false;
 
 if(isset($_FILES['imagem'])){
 
@@ -92,7 +92,7 @@ require('pdo.inc.php');
 }
 
 
-$tipo = $_POST['tipo'] ?? false;
+
 
 if(!isset($tipo)){
     header("Location: index.php");
