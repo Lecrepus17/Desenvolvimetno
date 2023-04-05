@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-lg-6 pe-lg-0" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                    <img class="img-fluid" src="assets/imagem/barramas.jpg" alt="">
+                    <img class="img-fluid" src="/assets/imagem/ifrs.png" alt="">
                     </div>
                 </div>
             </div>
