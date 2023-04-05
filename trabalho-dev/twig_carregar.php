@@ -1,7 +1,4 @@
-<?php
-    # produtos.php
-    
-        
+<?php 
         require('vendor/autoload.php');
             
         $loader = new \Twig\Loader\FilesystemLoader('./templates');
