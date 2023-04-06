@@ -48,6 +48,8 @@
 </head>
 
     <body>
+
+    
         <!-- Responsive navbar-->
         <div class="container">
     	<div class="row">
