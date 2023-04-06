@@ -103,8 +103,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 pe-lg-0" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                    <img class="img-fluid" src="/assets/imagem/ifrs.png" alt="">
+                    <div class="pos
+                    ]relative h-100">
+                    <img class="img
+                    ]" src="/assets/imagem/ifrs.png" alt="">
                     </div>
                 </div>
             </div>
@@ -115,8 +117,10 @@
 
     
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-          <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; E_Férias 2022</p></div>
+        <footer class="py-5 bg-dark
+        ]
+          <div class="container px-
+          ]class="m-0 text-center text-white">Copyright &copy; E_Férias 2022</p></div>
       </footer>
   <!-- Footer End -->
 
