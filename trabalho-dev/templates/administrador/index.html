@@ -112,8 +112,8 @@
                     
                 
                 
-                <!--   TESTE DIRETO  
-
+               
+<!--   TESTE DIRETO 
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="service-item rounded overflow-hidden">
                             <img class="img-fluid" src="assets/imagem/Hawaii.jpg" alt="">
@@ -128,7 +128,7 @@
                                 <a href='excluir_jogador.php?indice=$id'>Excluir</a></a>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item rounded overflow-hidden">
                             <img class="img-fluid" src="assets/imagem/londres.jpg" alt="">
@@ -206,53 +206,29 @@
                         </div>
                     </div>
  -->
-                    
+                  
 
-                    <?php
-               
-                    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                        try {
-                            $mysqli = new mysqli("localhost", "id19323740_root", "89B}7MqH0K$=NVfy", "id19323740_ferias");
-                            $mysqli->set_charset("utf8");
-    //------------------------------------------------------------------------------
-    
-                            //Faz a consulta SQL
-                            $time = $mysqli->query("SELECT * FROM locais");
-                            //Percorre os times
-                               while ($resultado = $time->fetch_array()) {
-                                   //Busca os valores de cada registro
-                                   $id = $resultado["id"];
-                                   $descricao = $resultado["descricao"];
-                                   $nome = $resultado["nome"];
-                                   $preco = $resultado["preco"];
-                                   $imagem = $resultado["imagem"];
-                                   $data_inicio = $resultado["data_inicio"];
-                                   $data_fim = $resultado["data_fim"];
-                                   
-    
-                            echo "                    
+        {% for usr in user %}
+ 
+                                
                         <div class='col-md-6 col-lg-4 wow fadeInUp' data-wow-delay='0.5s'>
-                            <div class='service-item rounded overflow-hidden'>
-                                <img class='img-fluid' src='$imagem' alt=''>
+                            <div class='service-item rounded overflow-hidden border border-dark'>
+                                <img class='img-fluid' src='{{ usr.foto }}' alt=''>
                                 <div class='position-relative p-4 pt-0'>
                                     <br>
-                                    <h4 class='mb-3'>$nome</h4>
-                                    <p>Descrição: $descricao
+                                    <h4 class='mb-3'>{{ usr.nome_aluno }}</h4>
+                                    <p>{{ usr.foto }}
                                     </p>
-                                    <p>Data: $data_inicio até $data_fim</p>
-                                    <p>Preço: R$$preco,90</p>
-                                    <a class='small fw-medium' href=''><a href='alterar.php?indice=$id'>Alterar</a> |
-                                <a href='excluir.php?indice=$id'>Excluir</a></a>
+                                    <p>Data: {{ usr.data_nasc }}</p>
+                                    <p>{{ usr.turmas_idturmas }}</p>
+                                    <a class='small fw-medium' href=''><a href='alterar.php?indice={{usr.idalunos}}'>Alterar</a> |
+                                <a href='excluir.php?indice={{usr.idalunos}}'>Excluir</a></a>
                                 </div>
                             </div>
-                        </div>";}
+                        </div>
                         
-                            $time->free();
-                                    $mysqli->close();
-                                } catch (Exception $e) {
-                                    exit("Erro ao conectar ao banco de dados: " . $e->getMessage());
-                                }
-                            ?>  </div>               
+         {% endfor %}
+
 
 
 
