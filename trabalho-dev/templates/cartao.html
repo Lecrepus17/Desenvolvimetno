@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos/estilo.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-
-    <title>Document</title>
-</head>
-<body>
+{% include "inc/head.html" %}
     <div class="container mt-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-7">
@@ -19,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-7 border-right no-gutters">
                             <div class="py-3"><img src="img/felipe.jpg" width="100" height="100" class="rounded-circle">
-                                <h4 class="text-secondary">Felipe Neto</h4>
+                                <h4 class="text-secondary">{{ user.nome_aluno }}</h4>
                                 <div class="allergy"><span>Estudante</span>
                                 
                                 </div>
@@ -29,33 +16,25 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Data de nascimento:</span> <span class="text-left bottom">03/13/2016</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Data de nascimento:</span> <span class="text-left bottom">{{ user.data_nasc }}</span> </div>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Age</span> <span class="text-left bottom">22Y 4m</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Turma:</span> <span class="text-left bottom">{{ nome_curso }} {{ nome_turma }}</span> </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Turma</span> <span class="text-left bottom">3º informática</span> </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Height</span> <span class="text-left bottom">5'9"</span> </div>
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="px-3"><button type="button" class="btn btn-primary btn-block">Send Message</button></div>
+                                <div class="px-3"><button type="button" class="btn btn-primary btn-block">sair</button></div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="py-3">
-                                <div> <span class="d-block head">Nível de ensino:</span> <span class="bottom">Subsequente</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Curso</span> <span class="bottom">Informática</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Home Phone#</span> <span class="bottom">212 (213)-1234</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Work Phone#</span> <span class="bottom">718 (702)-9876</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Email</span> <span class="bottom">destanaarvore@gmail.com</span> </div><br>
+                                <div> <span class="d-block head">Nível de ensino:</span> <span class="bottom">{{ nome_nivel }}</span> </div>
+                                <div class="mt-4"> <span class="d-block head">Curso:</span> <span class="bottom">{{ nome_curso }}</span> </div>
+                                <div class="mt-4"> <span class="d-block head">Turma:</span> <span class="bottom">{{ nome_turma }}</span> </div>
+                                <div class="mt-4"> <span class="d-block head">Ano:</span> <span class="bottom">{{ nome_ano }}</span> </div><br>
                                 <div><img src="assets/imagem/qrcode.png" width="100"></div>
                             </div>
                         </div>

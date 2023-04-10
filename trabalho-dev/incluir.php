@@ -1,8 +1,10 @@
 <?php
-
-
+require('twig_carregar.php');
+require('pdo.inc.php');
 require('func/sanitize_filename.php');
-$tipo = $_POST['tipo'] ?? false;
+require('func/altera_inclui.php');
+
+$tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 
 if(isset($_FILES['imagem'])){
 
@@ -15,110 +17,75 @@ if(isset($_FILES['imagem'])){
 
 
 
-//Realiza o INSERT DOS niveis de ensino
-function Insere_nivel($nome_nivel)
-{
-require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO nivel_ensino (nome) VALUES
-                (:nome)");
-
-        $sql->bindParam(':nome', $nome_nivel);
-
-        $sql->execute();
-
-
-
-}
-
-    //----------------------------------------------------------------------------------
-//Realiza o INSERT DOS cursos
-function Insere_curso($nome_curso, $nivel_ensino)
-{
-require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO cursos (nome, nivel_ensino_idNivel_ensino) VALUES
-                (:nome, :nivel)");
-
-        $sql->bindParam(':nome', $nome_curso);
-        $sql->bindParam(':nivel', $nivel_ensino);
-
-        $sql->execute();
-
-
-
-}
-
-    //----------------------------------------------------------------------------------
-//Realiza o INSERT Das turmas
-function Insere_turma($nome_turma, $idcurso)
-{
-require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO turmas (nome, cursos_idcursos) VALUES
-                (:nome, :nivel)");
-
-        $sql->bindParam(':nome', $nome_turma);
-        $sql->bindParam(':nivel', $idcurso);
-
-        $sql->execute();
-
-
-
-}
-
-    //----------------------------------------------------------------------------------
-  
-//insere aluno
-function Insere_aluno($nome_aluno, $data_nasc,  $foto, $idturma)
-{
-require('pdo.inc.php');
-       
-
-        //Realiza o INSERT DOS JOGADORES
-        $sql = $conex->prepare("INSERT INTO alunos (nome_aluno, data_nasc, foto, turmas_idturmas) VALUES
-                (:nome, :nasc, :foto,  :idturma)");
-
-        $sql->bindParam(':nome', $nome_aluno);
-        $sql->bindParam(':nasc', $data_nasc);
-        $sql->bindParam(':foto', $foto);
-        $sql->bindParam(':idturma', $idturma);
-      
-
-        $sql->execute();
-
-        header('location:login.php');
-
-
-    
-
-}
 
 
 
 
-if(!isset($tipo)){
-    header("Location: index.php");
-}
-    
+
+
 
 if ($tipo == 'aluno'){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
     Insere_aluno( $_POST['nome'], $_POST['data_nasc'], $diretorio.$img['name'], $_POST['idturma']);
     // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location: administrador.php');
     die;
+}else {
+
+
+
+
+    echo $twig->render('administrador/altera_aluno.html', [
+          'Incluir' => 'Incluir',
+          ]);
+        die;
+        }
+
 }elseif($tipo == 'turma'){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
     Insere_turma($_POST['nome_turma'], $_POST['idcurso']);
      // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location: administrador.php');
     die;
+}else {
+    
+    
+
+
+    echo $twig->render('administrador/altera_aluno.html', [
+        'Incluir' => 'Incluir',
+        ]);
+      die;}
 }
 elseif($tipo == 'curso'){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
     Insere_curso( $_POST['nome_curso'], $_POST['nivel_ensino']);
     // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location: administrador.php');
     die;
+    
+}else {
+    
+
+    
+    echo $twig->render('administrador/altera_aluno.html', [
+        'Incluir' => 'Incluir',
+        ]);
+      die;}
 }
 elseif($tipo == 'nivel'){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
     Insere_nivel( $_POST['nome_nivel']);
     // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location: administrador.php');
     die;
+}else {
+    
+
+    
+    echo $twig->render('administrador/altera_aluno.html', [
+        'Incluir' => 'Incluir',
+        ]);
+      die;}
 };
+

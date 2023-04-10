@@ -1,58 +1,18 @@
 <?php
+require('twig_carregar.php');
+require('pdo.inc.php');
+require('func/sanitize_filename.php');
+require('func/function.php');
+
 // Vejo se não passei índice, volta para a listagem
 if(!isset($_GET['indice'])){
-    header("Location: index.php");
+    header("Location:administradoradministrador.php");
 }
 //Pega o índice
-$id =  $_GET['indice'];
+$id =  $_GET['indice'] ?? false;
 $tipo = $_GET['tipo'] ?? false;
 
-function deleteAluno($id)
-{
-    require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM alunos WHERE id = (:id)");
-
-    $sql->bindParam(':id', $id);
-
-    $sql->execute();
-
-}
-function deleteTurma($id)
-{
-    require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM turmas WHERE id = (:id)");
-
-    $sql->bindParam(':id', $id);
-
-    $sql->execute();
-
-}
-function deleteCurso($id)
-{
-    require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM cursos WHERE id = (:id)");
-
-    $sql->bindParam(':id', $id);
-
-    $sql->execute();
-
-}
-function deleteNivel($id)
-{
-    require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM nivel_ensino WHERE id = (:id)");
-
-    $sql->bindParam(':id', $id);
-
-    $sql->execute();
-
-}
-
-if(!isset($tipo)){
-    header("Location: index.php");
-}
     
-
 
 
 
@@ -60,24 +20,24 @@ if(!isset($tipo)){
 if ($tipo == 'aluno'){
     deleteAluno( $id );
     // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location:administrador.php');
     die;
 }elseif($tipo == 'turma'){
     deleteTurma( $id );
      // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location:administrador.php');
     die;
 }
 elseif($tipo == 'curso'){
     deleteCurso( $id );
     // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location:administrador.php');
     die;
 }
 elseif($tipo == 'nivel'){
     deleteNivel( $id );
     // Redireciona para a página inicial
-    header('Location: index.php');
+    header('Location:administrador.php');
     die;
 };
 

@@ -64,10 +64,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `banco`.`alunos` (
   `idalunos` INT NOT NULL AUTO_INCREMENT,
   `nome_aluno` VARCHAR(150) NOT NULL,
-  `data_nasc` DATE NOT NULL,
+  `data_nasc` DATETIME NOT NULL,
   `foto` VARCHAR(300) NOT NULL,
   `turmas_idturmas` INT NOT NULL,
-  `senha` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`idalunos`, `turmas_idturmas`),
     FOREIGN KEY (`turmas_idturmas`)
     REFERENCES `banco`.`turmas` (`idturmas`)
@@ -76,32 +75,14 @@ CREATE TABLE IF NOT EXISTS `banco`.`alunos` (
 ENGINE = InnoDB;
 
 
-
-
-
-
--- -----------------------------------------------------
--- Table `banco`.`admin`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco`.`admin` (
-  `idadmin` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(300) NOT NULL,
-  `senha` VARCHAR(300) NOT NULL,
-  `foto` VARCHAR(300) NOT NULL,
-  `data_nasc` DATE NOT NULL,
-  PRIMARY KEY (`idadmin`))
-ENGINE = InnoDB;
-
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 insert into nivel_ensino (nome_nivel) values ('Técnico Integrado'), ('Subsequente');
+
 insert into cursos (nome_curso, nivel_ensino_idNivel_ensino) values ('Info', 1), ('agro', 2);
 insert into turmas (nome_turma, cursos_idcursos) values ('1 ano', 1), ('2 ano', 2);
-insert into alunos (nome_aluno, data_nasc, foto, turmas_idturmas, senha) values ('Pedro Sperotto', '2006-12-12', 'assets/imagem/bento.jpg', 1, '111'), ('Ale Sperotto', '2007-09-23', 'caminho foto', 2, '123');
-insert into admin (nome, data_nasc, foto, senha) values ('Pedro Sperotto', '2006-12-12', 'caminho foto', '123'), ('Ale Sperotto', '2007-09-23', 'caminho foto', '123');
+insert into alunos (nome_aluno, data_nasc, foto, turmas_idturmas) values ('Pedro Sperotto', '12/28/2006', 'caminho foto', 1), ('Ale Sperotto', '12/28/2007', 'caminho foto', 2);
 
