@@ -32,26 +32,26 @@
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">Alterar aluno</h2>
-                    <form method="POST">
+                    <h2 class="title">{{ titulo }} aluno</h2>
+                    <form action="#" method="post" enctype="multipart/form-data">
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Nome" name="name">
+                            <input class="input--style-1" type="text" placeholder="Nome" name="nome">
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Data de nascimento" name="birthday">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Data de nascimento" name="data_nasc">
                                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="gender">
+                                        <select name="idturma">
                                             <option disabled="disabled" selected="selected">Turma</option>
-                                            <option>Turma 1</option>
-                                            <option>Turma 2</option>
-                                            <option>Turma 3</option>
+                                            {% for turmas in turma %}
+                                                <option value="{{ turmas.idturmas }}">{{ turmas.nome_turma }}</option>
+                                            {% endfor %}
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
@@ -62,7 +62,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-1" type="file" placeholder="foto do aluno" name="res_code">Foto do aluno
+                                    Foto do aluno<input class="input--style-1" type="file" placeholder="foto do aluno" name="imagem">
                                 </div>
                             </div>
                         </div>

@@ -26,15 +26,21 @@ if(isset($_FILES['imagem'])){
 
 if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        $data = $_POST['data_nasc'];
+
+        var_dump($_POST['data_nasc']);
     Insere_aluno( $_POST['nome'], $_POST['data_nasc'], $diretorio.$img['name'], $_POST['idturma']);
     // Redireciona para a página inicial
-    header('Location: administrador.php');
+    //header('Location: administrador.php');
     die;
 }else {
 
-
+    $sql = $conex->query('SELECT * FROM turmas');
+    $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
     echo $twig->render('administrador/crud/aluno.html', [
-          'Incluir' => 'Incluir',
+          'titulo' => 'Incluir',
+          'turma' => $sql,
           ]);
         die;
         }
