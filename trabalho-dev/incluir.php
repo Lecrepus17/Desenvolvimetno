@@ -2,7 +2,7 @@
 require('twig_carregar.php');
 require('pdo.inc.php');
 require('func/sanitize_filename.php');
-require('func/altera_inclui.php');
+require('func/function.php');
 
 $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 
@@ -33,9 +33,7 @@ if ($tipo == 'aluno'){
 }else {
 
 
-
-
-    echo $twig->render('administrador/altera_aluno.html', [
+    echo $twig->render('administrador/crud/aluno.html', [
           'Incluir' => 'Incluir',
           ]);
         die;
@@ -52,7 +50,7 @@ if ($tipo == 'aluno'){
     
 
 
-    echo $twig->render('administrador/altera_aluno.html', [
+    echo $twig->render('administrador/crud/turma.html', [
         'Incluir' => 'Incluir',
         ]);
       die;}
@@ -68,7 +66,7 @@ elseif($tipo == 'curso'){
     
 
     
-    echo $twig->render('administrador/altera_aluno.html', [
+    echo $twig->render('administrador/crud/curso.html.html', [
         'Incluir' => 'Incluir',
         ]);
       die;}
@@ -83,7 +81,7 @@ elseif($tipo == 'nivel'){
     
 
     
-    echo $twig->render('administrador/altera_aluno.html', [
+    echo $twig->render('administrador/crud/nivel_ensino.html', [
         'Incluir' => 'Incluir',
         ]);
       die;}
