@@ -12,7 +12,7 @@ function deleteAluno($id)
 function deleteTurma($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM turmas WHERE id = :id");
+    $sql = $conex->prepare("DELETE * FROM turmas WHERE idturmas = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -22,7 +22,7 @@ function deleteTurma($id)
 function deleteCurso($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM cursos WHERE id = :id");
+    $sql = $conex->prepare("DELETE * FROM cursos WHERE idcursos = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -32,7 +32,7 @@ function deleteCurso($id)
 function deleteNivel($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM nivel_ensino WHERE id = :id");
+    $sql = $conex->prepare("DELETE * FROM nivel_ensino WHERE idnivel-ensino = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -45,7 +45,7 @@ function deleteNivel($id)
 function altera_nivel($nome_nivel)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE id = :id");
+        $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE idnivel_ensino = :id");
 
         $sql->bindParam(':nome', $nome_nivel);
         $sql->bindParam(':id', $id);  
@@ -61,7 +61,7 @@ require('pdo.inc.php');
 function altera_curso($nome_curso, $nivel_ensino)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE curso SET nome_curso = :nome, nivel_ensino_idNivel_ensino = :idnivel  WHERE id = :id");
+        $sql = $conex->prepare("UPDATE cursos SET nome_curso = :nome, nivel_ensino_idNivel_ensino = :idnivel  WHERE idcursos = :id");
 
         $sql->bindParam(':nome', $nome_curso);
         $sql->bindParam(':idnivel', $nivel_ensino);
@@ -78,7 +78,7 @@ require('pdo.inc.php');
 function altera_turma($nome_turma, $idcurso)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE turma SET nome_turma = :nome, cursos_idcursos = :idcurso  WHERE id = :id");
+        $sql = $conex->prepare("UPDATE turmas SET nome_turma = :nome, cursos_idcursos = :idcurso  WHERE idturmas = :id");
         $sql->bindParam(':nome', $nome_turma);
         $sql->bindParam(':idcurso', $idcurso);
         $sql->bindParam(':id', $id);  
@@ -98,7 +98,7 @@ require('pdo.inc.php');
        
 
         //Realiza o altera DOS JOGADORES
-        $sql = $conex->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma  WHERE id = :id");
+        $sql = $conex->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma  WHERE idalunos = :id");
 
         $sql->bindParam(':nome', $nome_aluno);
         $sql->bindParam(':nasc', $data_nasc);
@@ -135,7 +135,7 @@ require('pdo.inc.php');
 function Insere_curso($nome_curso, $nivel_ensino)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO cursos (nome, nivel_ensino_idNivel_ensino) VALUES
+        $sql = $conex->prepare("INSERT INTO cursos (nome_curso, nivel_ensino_idNivel_ensino) VALUES
                 (:nome, :nivel)");
 
         $sql->bindParam(':nome', $nome_curso);
@@ -152,7 +152,7 @@ require('pdo.inc.php');
 function Insere_turma($nome_turma, $idcurso)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO turmas (nome, cursos_idcursos) VALUES
+        $sql = $conex->prepare("INSERT INTO turmas (nome_turma, cursos_idcursos) VALUES
                 (:nome, :nivel)");
 
         $sql->bindParam(':nome', $nome_turma);
