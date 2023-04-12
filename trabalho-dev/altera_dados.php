@@ -11,7 +11,7 @@ if(!isset($_GET['indice'])){
 
 if(isset($_FILES['imagem'])){
     $img = $_FILES['imagem'];
-    $diretorio = 'assets/imagem/';
+    $diretorio = 'assets/imagem_user/';
 
     if($diretorio.$img['name'] != $diretorio){
         $imagem = $diretorio.$img['name'];
