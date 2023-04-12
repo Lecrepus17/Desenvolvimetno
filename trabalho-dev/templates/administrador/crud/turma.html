@@ -32,7 +32,7 @@
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">Alterar turma</h2>
+                    <h2 class="title">{{ titulo }} turma</h2>
                     <form method="POST">
                         <div class="input-group">
                             <input class="input--style-1" type="text" placeholder="Nome da turma" name="name">
@@ -44,9 +44,9 @@
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="gender">
                                             <option disabled="disabled" selected="selected">Curso</option>
-                                            <option>Curso 1</option>
-                                            <option>Curso 2</option>
-                                            <option>Curso 3</option>
+                                            {% for cursos in curso %}
+                                                <option value="{{ cursos.idcurso }}">{{ cursos.nome_curso }}</option>
+                                            {% endfor %}
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>

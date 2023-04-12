@@ -35,12 +35,12 @@
                     <h2 class="title">{{ titulo }} aluno</h2>
                     <form action="#" method="post" enctype="multipart/form-data">
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Nome" name="nome">
+                            <input class="input--style-1" type="text" placeholder="Nome" name="nome" value="{{ aluno.nome_aluno }}">
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Data de nascimento" name="data_nasc">
+                                    <input class="input--style-1 js-datepicker" type="text" placeholder="Data de nascimento" name="data_nasc" value="{{ aluno.data_nasc|date('d/m/Y') }}">
                                     <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="idturma">
-                                            <option disabled="disabled" selected="selected">Turma</option>
+                                            <option disabled="disabled" selected="selected">{Turma}</option>
                                             {% for turmas in turma %}
                                                 <option value="{{ turmas.idturmas }}">{{ turmas.nome_turma }}</option>
                                             {% endfor %}
@@ -62,9 +62,13 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    Foto do aluno<input class="input--style-1" type="file" placeholder="foto do aluno" name="imagem">
+                                    Foto do aluno<input class="input--style-1" type="file" placeholder="foto do aluno" name="imagem" >
                                 </div>
+                                
                             </div>
+                        </div>
+                        <div>
+                            <input type="hidden" name="imagem_t"  value="{{ aluno.foto }}" require>
                         </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>
