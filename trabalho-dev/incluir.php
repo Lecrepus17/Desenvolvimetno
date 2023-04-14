@@ -29,7 +29,7 @@ if ($tipo == 'aluno'){
         $date = DateTime::createFromFormat('d/m/Y', $_POST['data_nasc']);
         $data = date('Y-m-d', $date->getTimestamp());
 
-       Insere_aluno( $_POST['nome'], $data, $diretorio.$img['name'], $_POST['idturmas']);
+       Insere_aluno( $_POST['nome'], $data, $diretorio.$img['name'], $_POST['idturmas'], $_POST['senha']);
     // Redireciona para a página inicial
     
     header('Location: administrador.php');

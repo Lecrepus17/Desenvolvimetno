@@ -38,7 +38,7 @@ print_r($_POST);
         if ($turma != $_POST['idturmas']){
             $turma = $_POST['idturmas'];
         }
-    altera_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $turma, $id);
+    altera_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $turma, $id, $_POST['senha']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;

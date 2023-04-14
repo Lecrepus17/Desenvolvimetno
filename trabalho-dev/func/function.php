@@ -92,20 +92,20 @@ require('pdo.inc.php');
     //----------------------------------------------------------------------------------
   
 //altera aluno
-function altera_aluno($nome_aluno, $data_nasc,  $foto, $idturma, $id)
+function altera_aluno($nome_aluno, $data_nasc,  $foto, $idturma, $id, $senha)
 {
 require('pdo.inc.php');
        
 
         //Realiza o altera DOS ALUNOS
-        $sql = $conex->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma  WHERE idalunos = :id");
+        $sql = $conex->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma, senha = :senha  WHERE idalunos = :id");
 
         $sql->bindParam(':nome', $nome_aluno);
         $sql->bindParam(':nasc', $data_nasc);
         $sql->bindParam(':foto', $foto);
         $sql->bindParam(':idturma', $idturma);
         $sql->bindParam(':id', $id);      
-
+        $sql->bindParam(':senha', $senha);
         $sql->execute();
 
    
@@ -165,20 +165,20 @@ require('pdo.inc.php');
     //----------------------------------------------------------------------------------
   
 //insere aluno
-function Insere_aluno($nome_aluno, $data_nasc,  $foto, $idturma)
+function Insere_aluno($nome_aluno, $data_nasc,  $foto, $idturma, $senha)
 {
 require('pdo.inc.php');
        
 
         //Realiza o INSERT DOS ALUNOS
-        $sql = $conex->prepare("INSERT INTO alunos (nome_aluno, data_nasc, foto, turmas_idturmas) VALUES
-                (:nome, :nasc, :foto,  :idturma)");
+        $sql = $conex->prepare("INSERT INTO alunos (nome_aluno, data_nasc, foto, turmas_idturmas, senha) VALUES
+                (:nome, :nasc, :foto,  :idturma, :senha)");
 
         $sql->bindParam(':nome', $nome_aluno);
         $sql->bindParam(':nasc', $data_nasc);
         $sql->bindParam(':foto', $foto);
         $sql->bindParam(':idturma', $idturma);
-      
+        $sql->bindParam(':senha', $senha);
 
         $sql->execute();
 
