@@ -31,12 +31,14 @@ if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         
 
-        
+print_r($_POST);
 
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
-
-
-    altera_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $_POST['idturma'], $id);
+        $turma = $_POST['idturma'];
+        if ($turma != $_POST['idturmas']){
+            $turma = $_POST['idturmas'];
+        }
+    altera_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $turma, $id);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;

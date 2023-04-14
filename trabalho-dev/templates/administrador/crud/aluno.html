@@ -47,10 +47,10 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="idturma">
-                                            <option disabled="disabled" selected="selected" value="{{ nturma }}"></option>
+                                        <select name="idturmas">
+                                            <option disabled="disabled" selected="selected" >turmas</option>
                                             {% for turmas in turma %}
-                                                <option value="{{ turmas.idturmas }}">{{ turmas.nome_turma }}</option>
+                                                <option value="{{ turmas.idturmas }}" >{{ turmas.nome_turma }}</option>
                                             {% endfor %}
                                         </select>
                                         <div class="select-dropdown"></div>
@@ -71,7 +71,7 @@
                             <input type="hidden" name="imagem_t"  value="{{ aluno.foto }}" require>
                         </div>
                         <div>
-                            <input type="hidden" name="idturma"  value="{{ aluno.idturma }}" require>
+                            <input type="hidden" name="idturma"  value="{{ aluno.turmas_idturmas }}" require>
                         </div>
                         <div>
                             <input type="hidden" name="id"  value="{{ aluno.idalunos }}" require>

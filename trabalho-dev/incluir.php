@@ -26,14 +26,13 @@ if(isset($_FILES['imagem'])){
 if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        $data = $_POST['data_nasc'];
-        $data_obj = new DateTime($data);
-        $data_formatada = $data_obj->format('Y-m-d'); // formato dd/mm/aaaa
+        $date = DateTime::createFromFormat('d/m/Y', $_POST['data_nasc']);
+        $data = date('Y-m-d', $date->getTimestamp());
 
-       
-    Insere_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $_POST['idturma']);
+       Insere_aluno( $_POST['nome'], $data, $diretorio.$img['name'], $_POST['idturmas']);
     // Redireciona para a página inicial
-    //header('Location: administrador.php');
+    
+    header('Location: administrador.php');
     die;
 }else {
 
@@ -48,8 +47,10 @@ if ($tipo == 'aluno'){
         die;
         }
 
-}elseif($tipo == 'turma'){
+}
+if($tipo == 'turma'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+   
     Insere_turma($_POST['nome_turma'], $_POST['idcurso']);
      // Redireciona para a página inicial
     header('Location: administrador.php');
@@ -66,9 +67,10 @@ if ($tipo == 'aluno'){
         ]);
       die;}
 }
-elseif($tipo == 'curso'){
+if($tipo == 'curso'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    Insere_curso( $_POST['nome_curso'], $_POST['nivel_ensino']);
+        
+    Insere_curso( $_POST['nome_curso'], $_POST['idnivel']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -78,14 +80,15 @@ elseif($tipo == 'curso'){
     $sql = $conex->query('SELECT * FROM nivel_ensino');
     $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
     
-    echo $twig->render('administrador/crud/curso.html.html', [
+    echo $twig->render('administrador/crud/curso.html', [
         'Titulo' => 'Incluir',
         'nivel' => $sql,
         ]);
       die;}
 }
-elseif($tipo == 'nivel'){
+if($tipo == 'nivel'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+     
     Insere_nivel( $_POST['nome_nivel']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
