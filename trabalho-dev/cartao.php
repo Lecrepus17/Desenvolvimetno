@@ -11,11 +11,33 @@ $sql->bindParam(':senha', $senha);
 $sql->execute();
 $sql = $sql->fetch(PDO::FETCH_ASSOC);
 
-    
-    
-  if($sql){
+
+ $turma = $conex->prepare('SELECT * FROM turmas  join alunos on alunos.turmas_idturmas = turmas.idturmas WHERE alunos.senha = :senha');
+ $turma->bindParam(':senha', $senha);
+ $turma->execute();   
+ $turma = $turma->fetch(PDO::FETCH_ASSOC);
+
+
+
+$curso = $conex->prepare('SELECT * FROM cursos JOIN turmas on cursos.idcursos = turmas.cursos_idcursos join alunos on alunos.turmas_idturmas = turmas.idturmas WHERE alunos.senha = :senha ');
+$curso->bindParam(':senha', $senha);
+$curso->execute();   
+$curso = $curso->fetch(PDO::FETCH_ASSOC);
+
+
+$nivel = $conex->prepare('SELECT * FROM nivel_ensino JOIN cursos on nivel_ensino.idNivel_ensino = cursos.nivel_ensino_idNivel_ensino JOIN turmas on cursos.idcursos = turmas.cursos_idcursos join alunos on alunos.turmas_idturmas = turmas.idturmas WHERE alunos.senha = :senha');
+$nivel->bindParam(':senha', $senha);
+$nivel->execute();  
+
+
+$nivel = $nivel->fetch(PDO::FETCH_ASSOC);
+  if(($sql) && ($turma) && ($nivel) && ($curso)){
     echo $twig->render('cartao.html', [
-          'user' => $sql,
+          'user' => $sql, 
+          'turma' => $turma,
+          'nivel' => $nivel,
+          'curso' => $curso,
+          
           ]);
         die;
 }else{
