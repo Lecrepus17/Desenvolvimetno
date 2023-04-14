@@ -7,8 +7,7 @@ require('func/function.php');
 $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 
 if(isset($_FILES['imagem'])){
-
-    $arquivo = sanitize_filename($_FILES['arquivo']['name']);
+    $arquivo = sanitize_filename($_FILES['imagem']['name']);
     $img = $_FILES['imagem'];
     $diretorio = 'assets/imagem/';
     move_uploaded_file($img['tmp_name'], $diretorio . $arquivo);
@@ -28,12 +27,13 @@ if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $data = $_POST['data_nasc'];
-        $dateObj = date_create($data);
-        $dataFormatada = date_format($dateObj, 'Y-m-d');
+        $data_obj = new DateTime($data);
+        $data_formatada = $data_obj->format('Y-m-d'); // formato dd/mm/aaaa
+
        
-    Insere_aluno( $_POST['nome'], $dataFormatada, $diretorio.$img['name'], $_POST['idturma']);
+    Insere_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $_POST['idturma']);
     // Redireciona para a página inicial
-    header('Location: administrador.php');
+    //header('Location: administrador.php');
     die;
 }else {
 

@@ -48,7 +48,7 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                         <select name="idturma">
-                                            <option disabled="disabled" selected="selected">{Turma}</option>
+                                            <option disabled="disabled" selected="selected" value="{{ nturma }}"></option>
                                             {% for turmas in turma %}
                                                 <option value="{{ turmas.idturmas }}">{{ turmas.nome_turma }}</option>
                                             {% endfor %}
@@ -69,6 +69,12 @@
                         </div>
                         <div>
                             <input type="hidden" name="imagem_t"  value="{{ aluno.foto }}" require>
+                        </div>
+                        <div>
+                            <input type="hidden" name="idturma"  value="{{ aluno.idturma }}" require>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id"  value="{{ aluno.idalunos }}" require>
                         </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>

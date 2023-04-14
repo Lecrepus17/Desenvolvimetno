@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `banco`.`alunos` (
   `data_nasc` DATE NOT NULL,
   `foto` VARCHAR(300) NOT NULL,
   `turmas_idturmas` INT NOT NULL,
-  `senha` VARCHAR(300) NOT NULL,
+  `senha` VARCHAR(300),
   PRIMARY KEY (`idalunos`, `turmas_idturmas`),
     FOREIGN KEY (`turmas_idturmas`)
     REFERENCES `banco`.`turmas` (`idturmas`)
@@ -87,8 +87,6 @@ CREATE TABLE IF NOT EXISTS `banco`.`admin` (
   `idadmin` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(300) NOT NULL,
   `senha` VARCHAR(300) NOT NULL,
-  `foto` VARCHAR(300) NOT NULL,
-  `data_nasc` DATE NOT NULL,
   PRIMARY KEY (`idadmin`))
 ENGINE = InnoDB;
 

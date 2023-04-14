@@ -29,16 +29,14 @@ $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 
 if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+        
 
-        $data = $_POST['data_nasc'];
-        $dateObj = date_create($data);
-       // var_dump($_POST['data_nasc']);
-       // die;
-        $dataFormatada = date_format($dateObj, 'Y-m-d');
+        
 
+        $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
 
 
-    altera_aluno( $_POST['nome'], $dataFormatada, $diretorio.$img['name'], $_POST['idturma']);
+    altera_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $_POST['idturma'], $id);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
