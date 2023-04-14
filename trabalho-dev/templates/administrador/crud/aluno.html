@@ -64,7 +64,12 @@
                                 <div class="input-group">
                                     Foto do aluno<input class="input--style-1" type="file" placeholder="foto do aluno" name="imagem" >
                                 </div>
-                                
+
+                            </div>
+                            <div class="col-2">
+                               <div class="input-group">
+                                    Senha<input class="input--style-1" type="password" placeholder="senha" name="senha" >
+                                </div>
                             </div>
                         </div>
                         <div>
@@ -75,6 +80,9 @@
                         </div>
                         <div>
                             <input type="hidden" name="id"  value="{{ aluno.idalunos }}" require>
+                        </div>
+                        <div>
+                            <input type="hidden" name="senha_t" value="{{ aluno.senha }}" require>
                         </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>

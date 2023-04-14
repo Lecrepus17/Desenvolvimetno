@@ -108,7 +108,10 @@ require('pdo.inc.php');
         $sql->bindParam(':senha', $senha);
         $sql->execute();
 
-   
+        if (!$sql->execute()) {
+                print_r($sql->errorInfo());
+            }
+            
     
 }
 

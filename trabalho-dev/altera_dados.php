@@ -34,11 +34,18 @@ if ($tipo == 'aluno'){
 print_r($_POST);
 
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
-        $turma = $_POST['idturma'];
-        if ($turma != $_POST['idturmas']){
-            $turma = $_POST['idturmas'];
+        $turma = $_POST['idturmas'];
+        $senha = $_POST['senha'];
+        if (!isset($_POST['idturmas'])){
+            $turma = $_POST['idturma'];
         }
-    altera_aluno( $_POST['nome'], $data_formatada, $diretorio.$img['name'], $turma, $id, $_POST['senha']);
+        if (!isset($_FILES['imagem'])){
+            $imagem = $_POST['imagem_t'];
+        }
+        if (!isset($_POST['senha'])){
+            $senha = $_POST['senha_t'];
+        }
+    altera_aluno( $_POST['nome'], $data_formatada, $imagem, $turma, $id, $senha);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
