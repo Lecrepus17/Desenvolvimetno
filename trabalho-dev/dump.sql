@@ -101,5 +101,4 @@ insert into nivel_ensino (nome_nivel) values ('Técnico Integrado'), ('Subsequen
 insert into cursos (nome_curso, nivel_ensino_idNivel_ensino) values ('Info', 1), ('agro', 2);
 insert into turmas (nome_turma, cursos_idcursos) values ('1 ano', 1), ('2 ano', 2);
 insert into alunos (nome_aluno, data_nasc, foto, turmas_idturmas, senha) values ('Pedro Sperotto', '2006-12-12', 'assets/imagem/bento.jpg', 1, '111'), ('Ale Sperotto', '2007-09-23', 'caminho foto', 2, '123');
-insert into admin (nome, data_nasc, foto, senha) values ('Pedro Sperotto', '2006-12-12', 'caminho foto', '123'), ('Ale Sperotto', '2007-09-23', 'caminho foto', '123');
-
+insert into `admin` (nome, senha) values ('ADM 1', '123'), ('ADM 2', '123');

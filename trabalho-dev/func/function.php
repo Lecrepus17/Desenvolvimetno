@@ -97,7 +97,7 @@ function altera_aluno($nome_aluno, $data_nasc,  $foto, $idturma, $id)
 require('pdo.inc.php');
        
 
-        //Realiza o altera DOS JOGADORES
+        //Realiza o altera DOS ALUNOS
         $sql = $conex->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma  WHERE idalunos = :id");
 
         $sql->bindParam(':nome', $nome_aluno);
@@ -172,7 +172,7 @@ function Insere_aluno($nome_aluno, $data_nasc,  $foto, $idturma)
 require('pdo.inc.php');
        
 
-        //Realiza o INSERT DOS JOGADORES
+        //Realiza o INSERT DOS ALUNOS
         $sql = $conex->prepare("INSERT INTO alunos (nome_aluno, data_nasc, foto, turmas_idturmas) VALUES
                 (:nome, :nasc, :foto,  :idturma)");
 
