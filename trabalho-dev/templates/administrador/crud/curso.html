@@ -35,7 +35,7 @@
                     <h2 class="title">{{ titulo }} curso</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Nome do curso" name="name">
+                            <input class="input--style-1" type="text" placeholder="Nome do curso" name="nome_curso">
                         </div>
                         <div class="row row-space">
                             
@@ -46,16 +46,14 @@
                                         <select name="idnivel">
                                             <option disabled="disabled" selected="selected">Nível de ensino</option>
                                             {% for niveis in nivel %}
-                                                <option value="{{ niveis.idnivel_ensino }}">{{ niveis.nome_nivel }}</option>
+                                                <option value="{{ niveis.idNivel_ensino }}">{{ niveis.nome_nivel }}</option>
                                             {% endfor %}
                                         </select>
-                                        
                                         <div class="select-dropdown"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
                         
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>

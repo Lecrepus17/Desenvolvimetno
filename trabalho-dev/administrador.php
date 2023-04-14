@@ -7,7 +7,6 @@
        JOIN cursos ON cursos_idcursos = cursos.idcursos
        JOIN nivel_ensino ON nivel_ensino.idNivel_ensino = cursos.nivel_ensino_idNivel_ensino;');
     $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
-
     echo $twig->render('administrador/index.html', [
           'user' => $sql,
      

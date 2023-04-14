@@ -42,7 +42,7 @@ function deleteNivel($id)
 
 
 
-function altera_nivel($nome_nivel)
+function altera_nivel($nome_nivel, $id)
 {
 require('pdo.inc.php');
         $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE idnivel_ensino = :id");
@@ -58,7 +58,7 @@ require('pdo.inc.php');
 
     //----------------------------------------------------------------------------------
 //Realiza o altera DOS cursos
-function altera_curso($nome_curso, $nivel_ensino)
+function altera_curso($nome_curso, $nivel_ensino, $id)
 {
 require('pdo.inc.php');
         $sql = $conex->prepare("UPDATE cursos SET nome_curso = :nome, nivel_ensino_idNivel_ensino = :idnivel  WHERE idcursos = :id");
@@ -75,7 +75,7 @@ require('pdo.inc.php');
 
     //----------------------------------------------------------------------------------
 //Realiza o altera Das turmas
-function altera_turma($nome_turma, $idcurso)
+function altera_turma($nome_turma, $idcurso, $id)
 {
 require('pdo.inc.php');
         $sql = $conex->prepare("UPDATE turmas SET nome_turma = :nome, cursos_idcursos = :idcurso  WHERE idturmas = :id");
@@ -108,18 +108,15 @@ require('pdo.inc.php');
 
         $sql->execute();
 
-        header('location:login.php');
-
-
+   
     
-
 }
 
 //Realiza o INSERT DOS niveis de ensino
 function Insere_nivel($nome_nivel)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO nivel_ensino (nome) VALUES
+        $sql = $conex->prepare("INSERT INTO nivel_ensino (nome_nivel) VALUES
                 (:nome)");
 
         $sql->bindParam(':nome', $nome_nivel);
@@ -161,6 +158,7 @@ require('pdo.inc.php');
         $sql->execute();
 
 
+            
 
 }
 
@@ -184,8 +182,8 @@ require('pdo.inc.php');
 
         $sql->execute();
 
-        header('location:login.php');
-
+        
+     
 
     
 
