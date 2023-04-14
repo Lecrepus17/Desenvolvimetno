@@ -62,7 +62,7 @@ if($tipo == 'turma'){
     $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     echo $twig->render('administrador/crud/turma.html', [
-        'Titulo' => 'Incluir',
+        'titulo' => 'Incluir',
         'curso' => $sql,
         ]);
       die;}
@@ -81,7 +81,7 @@ if($tipo == 'curso'){
     $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
     
     echo $twig->render('administrador/crud/curso.html', [
-        'Titulo' => 'Incluir',
+        'titulo' => 'Incluir',
         'nivel' => $sql,
         ]);
       die;}
