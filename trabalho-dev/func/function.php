@@ -2,7 +2,7 @@
 function deleteAluno($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM alunos WHERE idalunos = :id");
+    $sql = $conex->prepare("DELETE FROM alunos WHERE idalunos = :id");
 
     $sql->bindParam(':id', $id);
 

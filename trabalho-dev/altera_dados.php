@@ -36,6 +36,7 @@ if ($tipo == 'aluno'){
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
         $turma = $_POST['idturmas'];
         $senha = $_POST['senha'];
+        
         if (!isset($_POST['idturmas'])){
             $turma = $_POST['idturma'];
         }
@@ -45,6 +46,7 @@ if ($tipo == 'aluno'){
         if (!isset($_POST['senha'])){
             $senha = $_POST['senha_t'];
         }
+        
     altera_aluno( $_POST['nome'], $data_formatada, $imagem, $turma, $id, $senha);
     // Redireciona para a página inicial
     header('Location: administrador.php');
