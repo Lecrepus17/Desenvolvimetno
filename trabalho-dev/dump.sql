@@ -98,9 +98,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 insert into nivel_ensino (nome_nivel) values ('Técnico Integrado'), ('Subsequente');
-insert into cursos (nome_curso, nivel_ensino_idNivel_ensino) values ('Info', 1), ('agro', 2);
-insert into turmas (nome_turma, cursos_idcursos) values ('1 ano', 1), ('2 ano', 2);
-insert into alunos (nome_aluno, data_nasc, foto, turmas_idturmas, senha) values ('Pedro Sperotto', '2006-12-12', 'assets/imagem/bento.jpg', 1, '111'), ('Ale Sperotto', '2007-09-23', 'caminho foto', 2, '123');
+insert into cursos (nome_curso, nivel_ensino_idNivel_ensino) values ('Info', 1), ('ads', 2);
+insert into turmas (nome_turma, cursos_idcursos) values ('1 info', 1), ('2 info', 1), ('2 ads', 2), ('1 ads', 2);
+insert into alunos (nome_aluno, data_nasc, foto, turmas_idturmas, senha) values ('Pedro Sperotto', '2006-12-12', 'assets/imagem_user/bento.jpg', 1, '111'), ('Alexandre', '2005-09-21', 'assets/imagem_user/download2.jpg', 2, '111')
+, ('Cybelle', '2006-12-12', 'assets/imagem_user/cybele.png', 3, '111'), ('Gustavo', '2006-12-12', 'assets/imagem_user/joao.jpg', 4, '111');
 
-insert into `admin` (nome, senha) values ('ADM 1', '123'), ('ADM 2', '123');
+insert into `admin` (nome, senha) values ('adm1', '123'), ('adm2', '111');
 

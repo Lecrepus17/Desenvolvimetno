@@ -73,7 +73,7 @@ if ($tipo == 'aluno'){
 
 }elseif($tipo == 'turma'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_turma($_POST['nome_turma'], $_POST['idcurso']);
+    altera_turma($_POST['nome_turma'], $_POST['idcurso'], $_POST['id']);
      // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -97,7 +97,7 @@ if ($tipo == 'aluno'){
 }
 elseif($tipo == 'curso'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_curso( $_POST['nome_curso'], $_POST['nivel_ensino']);
+    altera_curso( $_POST['nome_curso'], $_POST['idnivel'], $_POST['id']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
