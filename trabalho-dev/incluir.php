@@ -108,3 +108,19 @@ if($tipo == 'nivel'){
       die;}
 };
 
+if($tipo == 'admin'){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+     
+    Insere_admin( $_POST['nome_adm'], $_POST['senha']);
+    // Redireciona para a página inicial
+    header('Location: administrador.php');
+    die;
+}else {
+    
+
+    echo $twig->render('administrador/crud/.html', [
+        'titulo' => 'Incluir',
+        ]);
+      die;}
+};
+

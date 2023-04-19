@@ -192,3 +192,29 @@ require('pdo.inc.php');
 
 }
 
+function Insere_admin($nome_adm, $senha){
+        $sql = $conex->prepare("INSERT INTO admin (nome, senha) VALUES (:nome, :senha)");
+        $sql->bindParam(':nome', $nome_adm);
+        $sql->bindParam(':senha', $senha);
+
+        $sql->execute();
+
+}
+
+function altera_admin($nome_adm, $senha, $id){
+        $sql = $conex->prepare("UPDATE admin SET nome = :nome, senha = :senha WHERE idadmin = :id");
+        $sql->bindParam(':nome', $nome_adm);
+        $sql->bindParam(':senha', $senha);
+        $sql->bindParam(':id', $id);
+
+}
+
+function deleteAdmin($id)
+{
+    require('pdo.inc.php');
+    $sql = $conex->prepare("DELETE * FROM admin WHERE idadmin = :id");
+
+    $sql->bindParam(':id', $id);
+
+    $sql->execute();
+}

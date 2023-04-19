@@ -35,7 +35,7 @@
                     <h2 class="title">{{ titulo }} curso</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Nome" name="nome_curso">
+                            <input class="input--style-1" type="text" placeholder="Nome do curso" name="nome_curso"  value="{{ curso.nome_curso }}">
                         </div>
                         <div class="row row-space">
                             
@@ -43,7 +43,7 @@
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
                                             
-                                        <select name="idnivel">
+                                        <select name="idnivels">
                                             <option disabled="disabled" selected="selected">Nível de ensino</option>
                                             {% for niveis in nivel %}
                                                 <option value="{{ niveis.idNivel_ensino }}">{{ niveis.nome_nivel }}</option>
@@ -54,7 +54,9 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div>
+                            <input type="hidden" name="idnivel"  value="{{ aluno.turmas_idturmas }}" require>
+                        </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>
                         </div>

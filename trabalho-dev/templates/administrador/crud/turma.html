@@ -35,14 +35,14 @@
                     <h2 class="title">{{ titulo }} turma</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Nome da turma" name="nome_turma">
+                            <input class="input--style-1" type="text" placeholder="Nome da turma" name="nome_turma"  value="{{ turma.nome_turma }}>
                         </div>
                         <div class="row row-space">
                             
                             <div class="col-2">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="idcurso">
+                                        <select name="idcursos">
                                             <option disabled="disabled" selected="selected">Curso</option>
                                             {% for cursos in curso %}
                                                 <option value="{{ cursos.idcursos }}">{{ cursos.nome_curso }}</option>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="hidden" name="idturma"  value="{{ aluno.turmas_idturmas }}" require>
+                            <input type="hidden" name="idcurso"  value="{{ turma.cursos_idcursos }}" require>
                         </div>
                         
                         <div class="p-t-20">

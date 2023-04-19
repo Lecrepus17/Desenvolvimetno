@@ -31,7 +31,7 @@ if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         
 
-print_r($_POST);
+
 
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
         $turma = $_POST['idturmas'];
@@ -60,14 +60,10 @@ print_r($_POST);
     $sql2 = $conex->query('SELECT * FROM turmas');
     $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql3 = $conex->prepare('SELECT nome_turma FROM turmas WHERE idturmas = :id');
-    $sql3->bindParam(':id', $sql['idturma']);  
-    $sql3 = $sql3->fetch(PDO::FETCH_ASSOC);
 
     echo $twig->render('administrador/crud/aluno.html', [
           'aluno' => $sql,
           'turma' => $sql2,
-          'nturma' => $sql3,
           'titulo' => 'Alterar',
           ]);
         die;
@@ -75,7 +71,12 @@ print_r($_POST);
 
 }elseif($tipo == 'turma'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_turma($_POST['nome_turma'], $_POST['idcurso']);
+        $curso = $_POST['idcursos'];
+        if (!isset($_POST['idcursos'])){
+            $curso = $_POST['idcurso'];
+        }
+
+    altera_turma($_POST['nome_turma'], $curso);
      // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -90,21 +91,22 @@ print_r($_POST);
     $sql2 = $conex->query('SELECT * FROM cursos');
     $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql3 = $conex->prepare('SELECT nome_curso FROM cursos WHERE idcursos = :id');
-    $sql3->bindParam(':id', $sql['idcursos']);  
-    $sql3 = $sql3->fetch(PDO::FETCH_ASSOC);
+
 
     echo $twig->render('administrador/crud/turma.html', [
         'turma' => $sql,
         'curso' => $sql2,
-        'ncurso' => $sql3,
         'titulo' => 'Alterar',
         ]);
       die;}
 }
 elseif($tipo == 'curso'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_curso( $_POST['nome_curso'], $_POST['nivel_ensino']);
+        $nivel = $_POST['idnivels'];
+        if (!isset($_POST['idnivels'])){
+            $nivel = $_POST['idnivel'];
+        }
+    altera_curso( $_POST['nome_curso'], $nivel);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
