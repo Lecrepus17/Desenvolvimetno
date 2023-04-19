@@ -2,7 +2,7 @@
 function deleteAluno($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM alunos WHERE idalunos = :id");
+    $sql = $conex->prepare("DELETE FROM alunos WHERE idalunos = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -189,20 +189,31 @@ require('pdo.inc.php');
 
 }
 
-function Insere_admin($nome_adm, $senha){
+function Insere_admin($nome, $senha){
+        require('pdo.inc.php');
         $sql = $conex->prepare("INSERT INTO admin (nome, senha) VALUES (:nome, :senha)");
-        $sql->bindParam(':nome', $nome_adm);
+        $sql->bindParam(':nome', $nome);
         $sql->bindParam(':senha', $senha);
 
         $sql->execute();
 
 }
 
-function altera_admin($nome_adm, $senha, $id){
+function altera_admin($nome, $senha, $id){
+        require('pdo.inc.php');
         $sql = $conex->prepare("UPDATE admin SET nome = :nome, senha = :senha WHERE idadmin = :id");
-        $sql->bindParam(':nome', $nome_adm);
+        $sql->bindParam(':nome', $nome);
         $sql->bindParam(':senha', $senha);
         $sql->bindParam(':id', $id);
 
 }
 
+function deleteAdmin($id)
+{
+    require('pdo.inc.php');
+    $sql = $conex->prepare("DELETE * FROM admin WHERE idadmin = :id");
+
+    $sql->bindParam(':id', $id);
+
+    $sql->execute();
+}
