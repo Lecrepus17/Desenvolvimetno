@@ -32,28 +32,15 @@
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">{{ titulo }} curso</h2>
+                    <h2 class="title">{{ titulo }} Administrador</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <input class="input--style-1" type="text" placeholder="Nome" name="nome_curso">
+                            <input class="input--style-1" type="text" placeholder="Nome" name="nome">
                         </div>
-                        <div class="row row-space">
-                            
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                            
-                                        <select name="idnivel">
-                                            <option disabled="disabled" selected="selected">Nível de ensino</option>
-                                            {% for niveis in nivel %}
-                                                <option value="{{ niveis.idNivel_ensino }}">{{ niveis.nome_nivel }}</option>
-                                            {% endfor %}
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="password" placeholder="Senha" name="senha">
                         </div>
+                        
                         
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>
