@@ -140,7 +140,7 @@ elseif($tipo == 'nivel'){
 }
 elseif($tipo == 'admin'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_admin( $_POST['nome'], $_POST['senha']);
+    altera_admin( $_POST['nome'], $_POST['senha'], $_POST['id']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -152,7 +152,7 @@ elseif($tipo == 'admin'){
     $sql = $sql->fetch(PDO::FETCH_ASSOC);
     
     echo $twig->render('administrador/crud/adm.html', [
-        'nivel' => $sql,
+        'admin' => $sql,
         'titulo' => 'Alterar',
         ]);
       die;}
