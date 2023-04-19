@@ -11,7 +11,7 @@ if(!isset($_GET['indice'])){
 
 if(isset($_FILES['imagem'])){
     $img = $_FILES['imagem'];
-    $diretorio = 'assets/imagem_user/';
+    $diretorio = 'assets/imagem/';
 
     if($diretorio.$img['name'] != $diretorio){
         $imagem = $diretorio.$img['name'];
@@ -60,11 +60,14 @@ print_r($_POST);
     $sql2 = $conex->query('SELECT * FROM turmas');
     $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
-
+    $sql3 = $conex->prepare('SELECT nome_turma FROM turmas WHERE idturmas = :id');
+    $sql3->bindParam(':id', $sql['idturma']);  
+    $sql3 = $sql3->fetch(PDO::FETCH_ASSOC);
 
     echo $twig->render('administrador/crud/aluno.html', [
           'aluno' => $sql,
           'turma' => $sql2,
+          'nturma' => $sql3,
           'titulo' => 'Alterar',
           ]);
         die;
