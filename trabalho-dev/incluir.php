@@ -111,7 +111,7 @@ if($tipo == 'nivel'){
 if($tipo == 'admin'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
      
-    Insere_admin( $_POST['nome_adm'], $_POST['senha']);
+    Insere_admin( $_POST['nome'], $_POST['senha']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
