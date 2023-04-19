@@ -209,3 +209,12 @@ function altera_admin($nome_adm, $senha, $id){
 
 }
 
+function deleteAdmin($id)
+{
+    require('pdo.inc.php');
+    $sql = $conex->prepare("DELETE * FROM admin WHERE idadmin = :id");
+
+    $sql->bindParam(':id', $id);
+
+    $sql->execute();
+}

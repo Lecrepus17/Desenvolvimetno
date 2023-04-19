@@ -39,7 +39,12 @@ elseif($tipo == 'nivel'){
     // Redireciona para a página inicial
     header('Location:administrador.php');
     die;
-};
+}
+elseif($tipo == 'admin'){
+    deleteAdmin($id);
+    header('Location:administrador.php');
+    die;
+}
 
 
 ?>
