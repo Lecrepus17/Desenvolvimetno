@@ -2,7 +2,7 @@
     require('twig_carregar.php');
     require('pdo.inc.php');
     // Vejo se não passei índice, volta para a listagem
-    if(!isset($_GET['indice'])){
+    if(!isset($_GET['tipo'])){
         header("Location: index.php");
     }
     
@@ -21,9 +21,6 @@
     if($func = 'altera'){
         header("Location:altera_dados.php?tipo=turma&indice=$resultado.php");
         die;
-    }elseif($func = 'exclui'){
-        header("Location:excluir.php?tipo=turma&indice=$resultado.php");
-        die;
     }
     }else {
     
@@ -34,7 +31,7 @@
     
         echo $twig->render('administrador/crud/formulario.html', [
               'sql' => $sql,
-              'titulo' => 'Alterar',
+              'titulo' => 'Alterar turma',
               ]);
             die;
             }
@@ -45,9 +42,6 @@
         if($func = 'altera'){
             header("Location:altera_dados.php?tipo=curso&indice=$resultado.php");
             die;
-        }elseif($func = 'exclui'){
-            header("Location:excluir.php?tipo=curso&indice=$resultado.php");
-            die;
         }
     }else {
         
@@ -57,7 +51,7 @@
     
         echo $twig->render('administrador/crud/formulario.html', [
               'sql' => $sql,
-              'titulo' => 'Alterar',
+              'titulo' => 'Alterar curso',
               ]);
             die;
            
@@ -66,10 +60,7 @@
             if($_SERVER["REQUEST_METHOD"] == "POST"){
             $resultado = $_POST['resultado'];
             if($func = 'altera'){
-                header("Location:altera_dados.php?tipo=curso&indice=$resultado.php");
-                die;
-            }elseif($func = 'exclui'){
-                header("Location:excluir.php?tipo=curso&indice=$resultado.php");
+                header("Location:altera_dados.php?tipo=nivel&indice=$resultado.php");
                 die;
             }
         }else {
@@ -80,7 +71,7 @@
         
             echo $twig->render('administrador/crud/formulario.html', [
                   'sql' => $sql,
-                  'titulo' => 'Alterar',
+                  'titulo' => 'Alterar nivel',
                   ]);
                 die;
                 }
@@ -88,10 +79,7 @@
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         $resultado = $_POST['resultado'];
         if($func = 'altera'){
-            header("Location:altera_dados.php?tipo=curso&indice=$resultado.php");
-            die;
-        }elseif($func = 'exclui'){
-            header("Location:excluir.php?tipo=curso&indice=$resultado.php");
+            header("Location:altera_dados.php?tipo=admin&indice=$resultado.php");
             die;
         }
     }else {
@@ -102,7 +90,7 @@
     
         echo $twig->render('administrador/crud/formulario.html', [
               'sql' => $sql,
-              'titulo' => 'Alterar',
+              'titulo' => 'Alterar admin',
               ]);
             die;
       

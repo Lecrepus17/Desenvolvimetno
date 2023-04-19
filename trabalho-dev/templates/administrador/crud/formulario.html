@@ -32,7 +32,7 @@
             <div class="card card-1">
                 <div class="card-heading"></div>
                 <div class="card-body">
-                    <h2 class="title">{{ titulo }} Selecionar</h2>
+                    <h2 class="title">{{ titulo }} </h2>
                     <form action="#" method="post" enctype="multipart/form-data">
                         
                         <div class="row row-space">
@@ -40,11 +40,27 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <div class="rs-select2 js-select-simple select--no-search">
-                                        <select name="idturmas">
-                                            <option disabled="disabled" selected="selected" >Selecionar</option>
-                                            
-                                                <option value="" >teste</option>
-                                            
+                                        <select name="resultado">
+                                            <option disabled="disabled" selected="selected">{{ titulo }}</option>
+                                          
+                                            {% if  titulo  == 'Alterar turma' %}
+                                            {% for sqls in sql %}
+                                                <option value="{{ sqls.idturmas }}">{{ sqls.nome_turma }}</option>
+                                            {% endfor %}
+                                            {% elseif  titulo  == 'Alterar curso' %}
+                                            {% for sqls in sql %}
+                                                <option value="{{ sqls.idcursos }}">{{ sqls.nome_curso }}</option>
+                                            {% endfor %}
+                                            {% elseif  titulo  == 'Alterar nivel' %}
+                                            {% for sqls in sql %}
+                                                <option value="{{ sqls.idNivel_ensino }}">{{ sqls.nome_nivel }}</option>
+                                            {% endfor %}
+                                            {% elseif  titulo  == 'Alterar admin' %}
+                                            {% for sqls in sql %}
+                                                <option value="{{ sqls.idadmin }}">{{ sqls.nome }}</option>
+                                            {% endfor %}
+                                            {% endif %}    
+                                           
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>

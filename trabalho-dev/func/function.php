@@ -45,15 +45,14 @@ function deleteNivel($id)
 function altera_nivel($nome_nivel, $id)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE idnivel_ensino = :id");
+        $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE idNivel_ensino = :id");
 
         $sql->bindParam(':nome', $nome_nivel);
         $sql->bindParam(':id', $id);  
 
         $sql->execute();
 
-
-
+   
 }
 
     //----------------------------------------------------------------------------------
@@ -108,9 +107,7 @@ require('pdo.inc.php');
         $sql->bindParam(':senha', $senha);
         $sql->execute();
 
-        if (!$sql->execute()) {
-                print_r($sql->errorInfo());
-            }
+
             
     
 }
