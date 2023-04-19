@@ -34,7 +34,6 @@ if ($tipo == 'aluno'){
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
         $turma = $_POST['idturmas'];
         $senha = $_POST['senha'];
-        
         if (!isset($_POST['idturmas'])){
             $turma = $_POST['idturma'];
         }
@@ -44,7 +43,6 @@ if ($tipo == 'aluno'){
         if (!isset($_POST['senha'])){
             $senha = $_POST['senha_t'];
         }
-        
     altera_aluno( $_POST['nome'], $data_formatada, $imagem, $turma, $id, $senha);
     // Redireciona para a página inicial
     header('Location: administrador.php');
@@ -60,10 +58,14 @@ if ($tipo == 'aluno'){
     $sql2 = $conex->query('SELECT * FROM turmas');
     $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
+    $sql3 = $conex->prepare('SELECT nome_turma FROM turmas WHERE idturmas = :id');
+    $sql3->bindParam(':id', $sql['idturma']);  
+    $sql3 = $sql3->fetch(PDO::FETCH_ASSOC);
 
     echo $twig->render('administrador/crud/aluno.html', [
           'aluno' => $sql,
           'turma' => $sql2,
+          'nturma' => $sql3,
           'titulo' => 'Alterar',
           ]);
         die;
@@ -71,12 +73,7 @@ if ($tipo == 'aluno'){
 
 }elseif($tipo == 'turma'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $curso = $_POST['idcursos'];
-        if (!isset($_POST['idcursos'])){
-            $curso = $_POST['idcurso'];
-        }
-
-    altera_turma($_POST['nome_turma'], $curso, $_POST['id']);
+    altera_turma($_POST['nome_turma'], $_POST['idcurso']);
      // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -91,8 +88,6 @@ if ($tipo == 'aluno'){
     $sql2 = $conex->query('SELECT * FROM cursos');
     $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
-
-
     echo $twig->render('administrador/crud/turma.html', [
         'turma' => $sql,
         'curso' => $sql2,
@@ -102,11 +97,7 @@ if ($tipo == 'aluno'){
 }
 elseif($tipo == 'curso'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $nivel = $_POST['idnivels'];
-        if (!isset($_POST['idnivels'])){
-            $nivel = $_POST['idnivel'];
-        }
-    altera_curso( $_POST['nome_curso'], $nivel, $_POST['id']);
+    altera_curso( $_POST['nome_curso'], $_POST['nivel_ensino']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -130,9 +121,8 @@ elseif($tipo == 'curso'){
 }
 elseif($tipo == 'nivel'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_nivel( $_POST['nome_nivel'], $_POST['id']);
+    altera_nivel( $_POST['nome_nivel']);
     // Redireciona para a página inicial
-  
     header('Location: administrador.php');
     die;
 }else {
@@ -143,6 +133,25 @@ elseif($tipo == 'nivel'){
     $sql = $sql->fetch(PDO::FETCH_ASSOC);
     
     echo $twig->render('administrador/crud/nivel_ensino.html', [
+        'nivel' => $sql,
+        'titulo' => 'Alterar',
+        ]);
+      die;}
+}
+elseif($tipo == 'admin'){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    altera_admin( $_POST['nome'], $_POST['senha']);
+    // Redireciona para a página inicial
+    header('Location: administrador.php');
+    die;
+}else {
+    
+    $sql = $conex->prepare("SELECT * FROM admin WHERE idadmin = :id");
+    $sql->bindParam(':id', $id);  
+    $sql->execute();
+    $sql = $sql->fetch(PDO::FETCH_ASSOC);
+    
+    echo $twig->render('administrador/crud/adm.html', [
         'nivel' => $sql,
         'titulo' => 'Alterar',
         ]);

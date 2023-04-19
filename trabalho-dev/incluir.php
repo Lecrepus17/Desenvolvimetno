@@ -118,7 +118,7 @@ if($tipo == 'admin'){
 }else {
     
 
-    echo $twig->render('administrador/crud/formulario.html', [
+    echo $twig->render('administrador/crud/adm.html', [
         'titulo' => 'Incluir',
         ]);
       die;}

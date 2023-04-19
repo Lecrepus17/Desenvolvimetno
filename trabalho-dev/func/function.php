@@ -206,6 +206,7 @@ function altera_admin($nome, $senha, $id){
         $sql->bindParam(':senha', $senha);
         $sql->bindParam(':id', $id);
 
+        $sql->execute();
 }
 
 function deleteAdmin($id)
