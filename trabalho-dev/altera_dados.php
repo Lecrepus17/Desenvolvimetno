@@ -31,8 +31,6 @@ if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         
 
-
-
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
         $turma = $_POST['idturmas'];
         $senha = $_POST['senha'];
@@ -78,7 +76,7 @@ if ($tipo == 'aluno'){
             $curso = $_POST['idcurso'];
         }
 
-    altera_turma($_POST['nome_turma'], $curso);
+    altera_turma($_POST['nome_turma'], $curso, $_POST['id']);
      // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -108,7 +106,7 @@ elseif($tipo == 'curso'){
         if (!isset($_POST['idnivels'])){
             $nivel = $_POST['idnivel'];
         }
-    altera_curso( $_POST['nome_curso'], $nivel);
+    altera_curso( $_POST['nome_curso'], $nivel, $_POST['id']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
@@ -132,8 +130,9 @@ elseif($tipo == 'curso'){
 }
 elseif($tipo == 'nivel'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_nivel( $_POST['nome_nivel']);
+    altera_nivel( $_POST['nome_nivel'], $_POST['id']);
     // Redireciona para a página inicial
+  
     header('Location: administrador.php');
     die;
 }else {

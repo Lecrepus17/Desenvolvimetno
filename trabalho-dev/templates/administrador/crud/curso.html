@@ -55,7 +55,10 @@
                             </div>
                         </div>
                         <div>
-                            <input type="hidden" name="idnivel"  value="{{ aluno.turmas_idturmas }}" require>
+                            <input type="hidden" name="idnivel"  value="{{ curso.nivel_ensino_idNivel_ensino }}" require>
+                        </div>
+                        <div>
+                            <input type="hidden" name="id"  value="{{ curso.idcursos }}" require>
                         </div>
                         <div class="p-t-20">
                             <button class="btn btn--radius btn--green" type="submit">Submit</button>
