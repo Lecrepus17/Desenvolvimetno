@@ -90,9 +90,14 @@ print_r($_POST);
     $sql2 = $conex->query('SELECT * FROM cursos');
     $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 
+    $sql3 = $conex->prepare('SELECT nome_curso FROM cursos WHERE idcursos = :id');
+    $sql3->bindParam(':id', $sql['idcursos']);  
+    $sql3 = $sql3->fetch(PDO::FETCH_ASSOC);
+
     echo $twig->render('administrador/crud/turma.html', [
         'turma' => $sql,
         'curso' => $sql2,
+        'ncurso' => $sql3,
         'titulo' => 'Alterar',
         ]);
       die;}
