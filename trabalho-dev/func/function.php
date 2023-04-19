@@ -12,7 +12,7 @@ function deleteAluno($id)
 function deleteTurma($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM turmas WHERE idturmas = :id");
+    $sql = $conex->prepare("DELETE  FROM turmas WHERE idturmas = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -22,7 +22,7 @@ function deleteTurma($id)
 function deleteCurso($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM cursos WHERE idcursos = :id");
+    $sql = $conex->prepare("DELETE  FROM cursos WHERE idcursos = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -32,7 +32,7 @@ function deleteCurso($id)
 function deleteNivel($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM nivel_ensino WHERE idnivel_ensino = :id");
+    $sql = $conex->prepare("DELETE  FROM nivel_ensino WHERE idnivel_ensino = :id");
 
     $sql->bindParam(':id', $id);
 

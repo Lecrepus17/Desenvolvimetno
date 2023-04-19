@@ -8,7 +8,6 @@
     
     
     //Pega o índice
-    $func = $_GET['func'] ?? false;
     $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
     
     
@@ -18,10 +17,10 @@
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             
          $resultado = $_POST['resultado'];
-    if($func = 'altera'){
+
         header("Location:altera_dados.php?tipo=turma&indice=$resultado.php");
         die;
-    }
+   
     }else {
     
 
@@ -39,10 +38,10 @@
     }elseif($tipo == 'curso'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         $resultado = $_POST['resultado'];
-        if($func = 'altera'){
+     
             header("Location:altera_dados.php?tipo=curso&indice=$resultado.php");
             die;
-        }
+       
     }else {
         
         $sql = $conex->query('SELECT * FROM cursos');
@@ -59,10 +58,10 @@
         }elseif($tipo == 'nivel'){
             if($_SERVER["REQUEST_METHOD"] == "POST"){
             $resultado = $_POST['resultado'];
-            if($func = 'altera'){
+           
                 header("Location:altera_dados.php?tipo=nivel&indice=$resultado.php");
                 die;
-            }
+           
         }else {
             
             $sql = $conex->query('SELECT * FROM nivel_ensino');
@@ -78,10 +77,10 @@
     }elseif($tipo == 'admin'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         $resultado = $_POST['resultado'];
-        if($func = 'altera'){
+      
             header("Location:altera_dados.php?tipo=admin&indice=$resultado.php");
             die;
-        }
+        
     }else {
         
         $sql = $conex->query('SELECT * FROM admin');
@@ -96,4 +95,84 @@
       
     }
     
-}
+}elseif($tipo == 'turmaexclui'){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $resultado = $_POST['resultado'];
+   
+        header("Location:excluir.php?tipo=turma&indice=$resultado.php");
+        die;
+
+}else {
+    
+    $sql = $conex->query('SELECT * FROM turmas');
+    $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+
+    echo $twig->render('administrador/crud/formulario.html', [
+          'sql' => $sql,
+          'titulo' => 'Exclui turma',
+          ]);
+        die;
+       
+        }
+    }elseif($tipo == 'cursoexclui'){
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $resultado = $_POST['resultado'];
+       
+            header("Location:excluir.php?tipo=curso&indice=$resultado.php");
+            die;
+    
+    }else {
+        
+        $sql = $conex->query('SELECT * FROM cursos');
+        $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
+    
+    
+        echo $twig->render('administrador/crud/formulario.html', [
+              'sql' => $sql,
+              'titulo' => 'Exclui curso',
+              ]);
+            die;
+           
+            }
+        }elseif($tipo == 'nivelexclui'){
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $resultado = $_POST['resultado'];
+           
+                header("Location:excluir.php?tipo=nivel&indice=$resultado.php");
+                die;
+        
+        }else {
+            
+            $sql = $conex->query('SELECT * FROM nivel_ensino');
+            $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
+        
+        
+            echo $twig->render('administrador/crud/formulario.html', [
+                  'sql' => $sql,
+                  'titulo' => 'Exclui nivel',
+                  ]);
+                die;
+               
+                }
+            }elseif($tipo == 'adminexclui'){
+                if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $resultado = $_POST['resultado'];
+               
+                    header("Location:excluir.php?tipo=admin&indice=$resultado.php");
+                    die;
+            
+            }else {
+                
+                $sql = $conex->query('SELECT * FROM admin');
+                $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
+            
+            
+                echo $twig->render('administrador/crud/formulario.html', [
+                      'sql' => $sql,
+                      'titulo' => 'Exclui admin',
+                      ]);
+                    die;
+                   
+                    }
+                }
