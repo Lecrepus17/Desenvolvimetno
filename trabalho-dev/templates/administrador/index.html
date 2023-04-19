@@ -2,61 +2,57 @@
 
     
         <!-- Responsive navbar-->
-        <div class="container">
-    	<div class="row">
-        	<div class="col-md-6 col-sm-6">
-            	<div class="templatemo_title"><a href="#">SOLIDITY</a></div>
-                <div class="templatemo_subtitle">Free Responsive Template</div>
+       
+        <section class="ftco-section">
+            
+    
+            <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+              <p class="navbar-brand">Insituto Federal do Rio Grande do Sul <br> Campus Bento Gonçalves</p>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+              </button>
+    
+              <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Incluir</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                      <a class="dropdown-item" href="incluir.php?tipo=aluno">Aluno</a>
+                    <a class="dropdown-item" href="incluir.php?tipo=turma">Turma</a>
+                    <a class="dropdown-item" href="incluir.php?tipo=curso">Curso</a>
+                    <a class="dropdown-item" href="incluir.php?tipo=nivel">Nível de ensino</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Alterar</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                      
+                    <a class="dropdown-item" href="">Turma</a>
+                    <a class="dropdown-item" href="">Curso</a>
+                    <a class="dropdown-item" href="">Nível de ensino</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Excluir</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                      
+                    <a class="dropdown-item" href="">Turma</a>
+                    <a class="dropdown-item" href="">Curso</a>
+                    <a class="dropdown-item" href="">Nível de ensino</a>
+                  </div>
+                </li>
+                    
+                  <li class="nav-item cta"><a href="Login.php" class="nav-link">Sair</a></li>
+                </ul>
+              </div>
             </div>
-            <div class="col-md-6 col-sm-6">
-            	<form id="search_form">
-            		<div class="templatemo_search">
-                    	<input name="search" type="text" placeholder="Search here .... " id="search">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-  <!-- title end -->
-  	<div class="site-header">
-		<div class="main-navigation">
-			<div class="container">
-            	<div class="row">
-            	<div class="col-md-12">
-                	<!-- This one in here is responsive menu for tablet and mobiles -->
-                  <div class="responsive-navigation visible-sm visible-xs">
-                   <a href="#" class="menu-toggle-btn">
-                    <i class="fa fa-bars fa-2x"></i>
-                  </a>
-       			 <div class="navigation responsive_menu">
-          			 <ul>
-					<li><a class="show-1 templatemo_home" href="#">Main Page</a></li>
-					<li><a class="show-2 templatemo_page2" href="#">Service</a></li>
-					<li><a class="show-3 templatemo_page3" href="#">Portfolio</a></li>
-					<li><a class="show-5 templatemo_page5" href="#">Contact</a></li>
-				</ul>
-    	    </div> <!-- /.responsive_menu -->
-   		 </div> <!-- /responsive_navigation -->
-                </div>
-            </div>
-            </div>
-			<div class="container">
-				<div class="row">
-                     <div class="col-md-12 navigation">
-						<div class="row main_menu">
-                    		<div class="col-md-2"><a id="prev">Prev</a></div>
-							<div class="col-md-2"><a class="show-1 templatemo_home" href="incluir.php?tipo=aluno"><div class="fa fa-home"></div></a></div>
-							<div class="col-md-2"><a class="show-2 templatemo_page2" href="#"><div class="fa fa-wrench"></div></a></div>
-							<div class="col-md-2"><a class="show-3 templatemo_page3" href="#"><div class="fa fa-picture-o"></div></a></div>
-							<div class="col-md-2"><a class="show-5 templatemo_page5" href="#"><div class="fa fa-phone"></div></a></div>
-                            <div class="col-md-2"><a id="next">Next</a></div>
-							
-						</div> 
-                    </div>
-				</div> 
-			</div> 
-		</div> 
-	</div> 
+          </nav>
+        <!-- END nav -->
+    
+        </section>
+    
+       
 
 
         <div class="container-xxl py-5">
@@ -77,10 +73,19 @@
                                 <div class='position-relative p-4 pt-0'>
                                     <br>
                                     <h4 class='mb-3'>{{ usr.nome_aluno }}</h4>
+<<<<<<< HEAD
                                     <p>Data: {{ usr.data_nasc }}</p>
                                     <p>{{ usr.turmas_idturmas }}</p>
                                     <a class='small fw-medium' href=''><a href='altera_dados.php?indice={{usr.idalunos}}'>Alterar</a> |
                                 <a href='excluir.php?indice={{usr.idalunos}}&tipo=aluno'>Excluir</a></a>
+=======
+                                    <p>Data de nascimento: {{ usr.data_nasc }}</p>
+                                    <p>Turma: {{ usr.nome_turma }}</p>
+                                    <p>Curso: {{ usr.nome_curso }}</p>
+                                    <P>Nível de ensino: {{ usr.nome_nivel }}</P>
+                                    <a class='small fw-medium' href=''><a href='altera_dados.php?indice={{usr.idalunos}}&tipo=aluno'>Alterar</a> |
+                                <a href='excluir.php?indice={{ usr.idalunos }}&tipo=aluno'>Excluir</a></a>
+>>>>>>> b5b091594ccf450e279644671105a1699ffdf0a0
                                 </div>
                             </div>
                         </div>

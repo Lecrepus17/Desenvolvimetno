@@ -7,8 +7,7 @@ require('func/function.php');
 $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 
 if(isset($_FILES['imagem'])){
-
-    $arquivo = sanitize_filename($_FILES['arquivo']['name']);
+    $arquivo = sanitize_filename($_FILES['imagem']['name']);
     $img = $_FILES['imagem'];
     $diretorio = 'assets/imagem_user/';
     move_uploaded_file($img['tmp_name'], $diretorio . $arquivo);
@@ -27,17 +26,20 @@ if(isset($_FILES['imagem'])){
 if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        $data = $_POST['data_nasc'];
+        $date = DateTime::createFromFormat('d/m/Y', $_POST['data_nasc']);
+        $data = date('Y-m-d', $date->getTimestamp());
 
-        var_dump($_POST['data_nasc']);
-    Insere_aluno( $_POST['nome'], $_POST['data_nasc'], $diretorio.$img['name'], $_POST['idturma']);
+       Insere_aluno( $_POST['nome'], $data, $diretorio.$img['name'], $_POST['idturmas'], $_POST['senha']);
     // Redireciona para a página inicial
-    //header('Location: administrador.php');
+    
+    header('Location: administrador.php');
     die;
 }else {
 
     $sql = $conex->query('SELECT * FROM turmas');
     $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+
     echo $twig->render('administrador/crud/aluno.html', [
           'titulo' => 'Incluir',
           'turma' => $sql,
@@ -45,8 +47,10 @@ if ($tipo == 'aluno'){
         die;
         }
 
-}elseif($tipo == 'turma'){
+}
+if($tipo == 'turma'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+   
     Insere_turma($_POST['nome_turma'], $_POST['idcurso']);
      // Redireciona para a página inicial
     header('Location: administrador.php');
@@ -54,31 +58,37 @@ if ($tipo == 'aluno'){
 }else {
     
     
-
+    $sql = $conex->query('SELECT * FROM cursos');
+    $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     echo $twig->render('administrador/crud/turma.html', [
-        'Incluir' => 'Incluir',
+        'titulo' => 'Incluir',
+        'curso' => $sql,
         ]);
       die;}
 }
-elseif($tipo == 'curso'){
+if($tipo == 'curso'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    Insere_curso( $_POST['nome_curso'], $_POST['nivel_ensino']);
+        
+    Insere_curso( $_POST['nome_curso'], $_POST['idnivel']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
     
 }else {
     
-
+    $sql = $conex->query('SELECT * FROM nivel_ensino');
+    $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
     
-    echo $twig->render('administrador/crud/curso.html.html', [
-        'Incluir' => 'Incluir',
+    echo $twig->render('administrador/crud/curso.html', [
+        'titulo' => 'Incluir',
+        'nivel' => $sql,
         ]);
       die;}
 }
-elseif($tipo == 'nivel'){
+if($tipo == 'nivel'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
+     
     Insere_nivel( $_POST['nome_nivel']);
     // Redireciona para a página inicial
     header('Location: administrador.php');
@@ -86,9 +96,8 @@ elseif($tipo == 'nivel'){
 }else {
     
 
-    
     echo $twig->render('administrador/crud/nivel_ensino.html', [
-        'Incluir' => 'Incluir',
+        'titulo' => 'Incluir',
         ]);
       die;}
 };

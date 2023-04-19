@@ -6,7 +6,7 @@ require('func/function.php');
 
 // Vejo se não passei índice, volta para a listagem
 if(!isset($_GET['indice'])){
-    header("Location:administradoradministrador.php");
+    header("Location:administrador.php");
 }
 //Pega o índice
 $id =  $_GET['indice'] ?? false;

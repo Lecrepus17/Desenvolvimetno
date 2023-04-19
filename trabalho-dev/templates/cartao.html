@@ -5,7 +5,11 @@
                 <div class="card p-2 text-center">
                     <div class="row">
                         <div class="col-md-7 border-right no-gutters">
+<<<<<<< HEAD
                             <div class="py-3"><img src="assets/img/felipe.jpg" width="100" height="100" class="rounded-circle">
+=======
+                            <div class="py-3"><img src="{{user.foto}}" width="100" height="100" class="rounded-circle">
+>>>>>>> b5b091594ccf450e279644671105a1699ffdf0a0
                                 <h4 class="text-secondary">{{ user.nome_aluno }}</h4>
                                 <div class="allergy"><span>Estudante</span>
                                 
@@ -19,22 +23,21 @@
                                                     <div class="d-flex flex-column"> <span class="text-left head">Data de nascimento:</span> <span class="text-left bottom">{{ user.data_nasc }}</span> </div>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex flex-column"> <span class="text-left head">Turma:</span> <span class="text-left bottom">{{ nome_curso }} {{ nome_turma }}</span> </div>
+                                                    <div class="d-flex flex-column"> <span class="text-left head">Turma:</span> <span class="text-left bottom">{{ turma.nome_turma }}</span> </div>
                                                 </td>
                                             </tr>
 
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="px-3"><button type="button" class="btn btn-primary btn-block">sair</button></div>
+                                <div class="nav-item cta"><a href="Login.php" class="nav-link">Sair</a></div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="py-3">
-                                <div> <span class="d-block head">Nível de ensino:</span> <span class="bottom">{{ nome_nivel }}</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Curso:</span> <span class="bottom">{{ nome_curso }}</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Turma:</span> <span class="bottom">{{ nome_turma }}</span> </div>
-                                <div class="mt-4"> <span class="d-block head">Ano:</span> <span class="bottom">{{ nome_ano }}</span> </div><br>
+                                
+                                <div> <span class="d-block head">Nível de ensino:</span> <span class="bottom">{{ nivel.nome_nivel }}</span> </div>
+                                <div class="mt-4"> <span class="d-block head">Curso:</span> <span class="bottom">{{ curso.nome_curso }}</span> </div>
                                 <div><img src="assets/imagem/qrcode.png" width="100"></div>
                             </div>
                         </div>

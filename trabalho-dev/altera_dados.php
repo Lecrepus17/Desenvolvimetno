@@ -27,24 +27,48 @@ $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 
 
 
-
 if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    altera_aluno( $_POST['nome'], $_POST['data_nasc'], $diretorio.$img['name'], $_POST['idturma']);
+        
+
+print_r($_POST);
+
+        $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
+        $turma = $_POST['idturmas'];
+        $senha = $_POST['senha'];
+        if (!isset($_POST['idturmas'])){
+            $turma = $_POST['idturma'];
+        }
+        if (!isset($_FILES['imagem'])){
+            $imagem = $_POST['imagem_t'];
+        }
+        if (!isset($_POST['senha'])){
+            $senha = $_POST['senha_t'];
+        }
+    altera_aluno( $_POST['nome'], $data_formatada, $imagem, $turma, $id, $senha);
     // Redireciona para a página inicial
     header('Location: administrador.php');
     die;
 }else {
 
-    $sql = $conex->prepare("SELECT * FROM alunos  WHERE id = :id");
+    $sql = $conex->prepare("SELECT * FROM alunos  WHERE idalunos = :id");
     $sql->bindParam(':id', $id);  
     $sql->execute();
     $sql = $sql->fetch(PDO::FETCH_ASSOC);
 
 
-    echo $twig->render('administrador/altera_aluno.html', [
+    $sql2 = $conex->query('SELECT * FROM turmas');
+    $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+
+    $sql3 = $conex->prepare('SELECT nome_turma FROM turmas WHERE idturmas = :id');
+    $sql3->bindParam(':id', $sql['idturma']);  
+    $sql3 = $sql3->fetch(PDO::FETCH_ASSOC);
+
+    echo $twig->render('administrador/crud/aluno.html', [
           'aluno' => $sql,
-          'Altera' => 'Altera',
+          'turma' => $sql2,
+          'nturma' => $sql3,
+          'titulo' => 'Alterar',
           ]);
         die;
         }
@@ -58,14 +82,18 @@ if ($tipo == 'aluno'){
 }else {
     
     
-    $sql = $conex->prepare("SELECT * FROM turma  WHERE id = :id");
+    $sql = $conex->prepare("SELECT * FROM turmas  WHERE idturmas = :id");
     $sql->bindParam(':id', $id);  
     $sql->execute();
     $sql = $sql->fetch(PDO::FETCH_ASSOC);
 
-    echo $twig->render('administrador/altera_aluno.html', [
+    $sql2 = $conex->query('SELECT * FROM cursos');
+    $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+
+    echo $twig->render('administrador/crud/turma.html', [
         'turma' => $sql,
-        'Altera' => 'Altera',
+        'curso' => $sql2,
+        'titulo' => 'Alterar',
         ]);
       die;}
 }
@@ -78,14 +106,18 @@ elseif($tipo == 'curso'){
     
 }else {
     
-    $sql = $conex->prepare("SELECT * FROM cursos  WHERE id = :id");
+    $sql = $conex->prepare("SELECT * FROM cursos  WHERE idcursos = :id");
     $sql->bindParam(':id', $id);  
     $sql->execute();
     $sql = $sql->fetch(PDO::FETCH_ASSOC);
-    
-    echo $twig->render('administrador/altera_aluno.html', [
+
+    $sql2 = $conex->query('SELECT * FROM nivel_ensino');
+    $sql2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+
+    echo $twig->render('administrador/crud/curso.html', [
         'curso' => $sql,
-        'Altera' => 'Altera',
+        'nivel' => $sql2,
+        'titulo' => 'Alterar',
         ]);
       die;}
 }
@@ -97,14 +129,14 @@ elseif($tipo == 'nivel'){
     die;
 }else {
     
-    $sql = $conex->prepare("SELECT * FROM nivel_ensino  WHERE id = :id");
+    $sql = $conex->prepare("SELECT * FROM nivel_ensino  WHERE idnivel_ensino = :id");
     $sql->bindParam(':id', $id);  
     $sql->execute();
     $sql = $sql->fetch(PDO::FETCH_ASSOC);
     
-    echo $twig->render('administrador/altera_aluno.html', [
+    echo $twig->render('administrador/crud/nivel_ensino.html', [
         'nivel' => $sql,
-        'Altera' => 'Altera',
+        'titulo' => 'Alterar',
         ]);
       die;}
 };

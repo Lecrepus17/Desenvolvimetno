@@ -2,7 +2,7 @@
 function deleteAluno($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE FROM alunos WHERE idalunos = :id");
+    $sql = $conex->prepare("DELETE * FROM alunos WHERE idalunos = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -12,7 +12,7 @@ function deleteAluno($id)
 function deleteTurma($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM turmas WHERE id = :id");
+    $sql = $conex->prepare("DELETE * FROM turmas WHERE idturmas = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -22,7 +22,7 @@ function deleteTurma($id)
 function deleteCurso($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM cursos WHERE id = :id");
+    $sql = $conex->prepare("DELETE * FROM cursos WHERE idcursos = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -32,7 +32,7 @@ function deleteCurso($id)
 function deleteNivel($id)
 {
     require('pdo.inc.php');
-    $sql = $conex->prepare("DELETE * FROM nivel_ensino WHERE id = :id");
+    $sql = $conex->prepare("DELETE * FROM nivel_ensino WHERE idnivel_ensino = :id");
 
     $sql->bindParam(':id', $id);
 
@@ -42,10 +42,10 @@ function deleteNivel($id)
 
 
 
-function altera_nivel($nome_nivel)
+function altera_nivel($nome_nivel, $id)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE id = :id");
+        $sql = $conex->prepare("UPDATE nivel_ensino SET nome_nivel = :nome  WHERE idnivel_ensino = :id");
 
         $sql->bindParam(':nome', $nome_nivel);
         $sql->bindParam(':id', $id);  
@@ -58,10 +58,10 @@ require('pdo.inc.php');
 
     //----------------------------------------------------------------------------------
 //Realiza o altera DOS cursos
-function altera_curso($nome_curso, $nivel_ensino)
+function altera_curso($nome_curso, $nivel_ensino, $id)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE curso SET nome_curso = :nome, nivel_ensino_idNivel_ensino = :idnivel  WHERE id = :id");
+        $sql = $conex->prepare("UPDATE cursos SET nome_curso = :nome, nivel_ensino_idNivel_ensino = :idnivel  WHERE idcursos = :id");
 
         $sql->bindParam(':nome', $nome_curso);
         $sql->bindParam(':idnivel', $nivel_ensino);
@@ -75,10 +75,10 @@ require('pdo.inc.php');
 
     //----------------------------------------------------------------------------------
 //Realiza o altera Das turmas
-function altera_turma($nome_turma, $idcurso)
+function altera_turma($nome_turma, $idcurso, $id)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("UPDATE turma SET nome_turma = :nome, cursos_idcursos = :idcurso  WHERE id = :id");
+        $sql = $conex->prepare("UPDATE turmas SET nome_turma = :nome, cursos_idcursos = :idcurso  WHERE idturmas = :id");
         $sql->bindParam(':nome', $nome_turma);
         $sql->bindParam(':idcurso', $idcurso);
         $sql->bindParam(':id', $id);  
@@ -92,34 +92,34 @@ require('pdo.inc.php');
     //----------------------------------------------------------------------------------
   
 //altera aluno
-function altera_aluno($nome_aluno, $data_nasc,  $foto, $idturma)
+function altera_aluno($nome_aluno, $data_nasc,  $foto, $idturma, $id, $senha)
 {
 require('pdo.inc.php');
        
 
-        //Realiza o altera DOS JOGADORES
-        $sql = $conex->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma  WHERE id = :id");
+        //Realiza o altera DOS ALUNOS
+        $sql = $conex->prepare("UPDATE alunos SET nome_aluno = :nome, data_nasc = :nasc, foto = :foto, turmas_idturmas = :idturma, senha = :senha  WHERE idalunos = :id");
 
         $sql->bindParam(':nome', $nome_aluno);
         $sql->bindParam(':nasc', $data_nasc);
         $sql->bindParam(':foto', $foto);
         $sql->bindParam(':idturma', $idturma);
         $sql->bindParam(':id', $id);      
-
+        $sql->bindParam(':senha', $senha);
         $sql->execute();
 
-        header('location:login.php');
-
-
+        if (!$sql->execute()) {
+                print_r($sql->errorInfo());
+            }
+            
     
-
 }
 
 //Realiza o INSERT DOS niveis de ensino
 function Insere_nivel($nome_nivel)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO nivel_ensino (nome) VALUES
+        $sql = $conex->prepare("INSERT INTO nivel_ensino (nome_nivel) VALUES
                 (:nome)");
 
         $sql->bindParam(':nome', $nome_nivel);
@@ -135,7 +135,7 @@ require('pdo.inc.php');
 function Insere_curso($nome_curso, $nivel_ensino)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO cursos (nome, nivel_ensino_idNivel_ensino) VALUES
+        $sql = $conex->prepare("INSERT INTO cursos (nome_curso, nivel_ensino_idNivel_ensino) VALUES
                 (:nome, :nivel)");
 
         $sql->bindParam(':nome', $nome_curso);
@@ -152,7 +152,7 @@ require('pdo.inc.php');
 function Insere_turma($nome_turma, $idcurso)
 {
 require('pdo.inc.php');
-        $sql = $conex->prepare("INSERT INTO turmas (nome, cursos_idcursos) VALUES
+        $sql = $conex->prepare("INSERT INTO turmas (nome_turma, cursos_idcursos) VALUES
                 (:nome, :nivel)");
 
         $sql->bindParam(':nome', $nome_turma);
@@ -161,32 +161,34 @@ require('pdo.inc.php');
         $sql->execute();
 
 
+            
 
 }
 
     //----------------------------------------------------------------------------------
   
 //insere aluno
-function Insere_aluno($nome_aluno, $data_nasc,  $foto, $idturma)
+function Insere_aluno($nome_aluno, $data_nasc,  $foto, $idturma, $senha)
 {
 require('pdo.inc.php');
        
 
-        //Realiza o INSERT DOS JOGADORES
-        $sql = $conex->prepare("INSERT INTO alunos (nome_aluno, data_nasc, foto, turmas_idturmas) VALUES
-                (:nome, :nasc, :foto,  :idturma)");
+        //Realiza o INSERT DOS ALUNOS
+        $sql = $conex->prepare("INSERT INTO alunos (nome_aluno, data_nasc, foto, turmas_idturmas, senha) VALUES
+                (:nome, :nasc, :foto,  :idturma, :senha)");
 
         $sql->bindParam(':nome', $nome_aluno);
         $sql->bindParam(':nasc', $data_nasc);
         $sql->bindParam(':foto', $foto);
         $sql->bindParam(':idturma', $idturma);
-      
+        $sql->bindParam(':senha', $senha);
 
         $sql->execute();
 
-        header('location:login.php');
-
+        
+     
 
     
 
 }
+
