@@ -8,7 +8,7 @@ require('func/function.php');
 if(!isset($_GET['indice'])){
     header("Location:administrador.php");
 }
-//Pega o índice
+//Pega o índice e o tipo de função
 $id =  $_GET['indice'] ?? false;
 $tipo = $_GET['tipo'] ?? false;
 
@@ -16,30 +16,31 @@ $tipo = $_GET['tipo'] ?? false;
 
 
 
-
+// exclui aluno
 if ($tipo == 'aluno'){
     deleteAluno( $id );
-    // Redireciona para a página inicial
+    // Redireciona para a listagem
     header('Location:administrador.php');
     die;
-}elseif($tipo == 'turma'){
+}// exclui turma
+elseif($tipo == 'turma'){
     deleteTurma( $id );
-     // Redireciona para a página inicial
+     // Redireciona para a listagem
     header('Location:administrador.php');
     die;
-}
+}// exclui curso
 elseif($tipo == 'curso'){
     deleteCurso( $id );
-    // Redireciona para a página inicial
+    // Redireciona para a listagem
     header('Location:administrador.php');
     die;
-}
+}// exclui nivel
 elseif($tipo == 'nivel'){
     deleteNivel( $id );
-    // Redireciona para a página inicial
+    // Redireciona para a listagem
     header('Location:administrador.php');
     die;
-}
+}// exclui admin
 elseif($tipo == 'admin'){
     deleteAdmin($id);
     header('Location:administrador.php');
