@@ -32,7 +32,7 @@ if ($tipo == 'aluno'){
         }
 
         // insere o aluno
-       Insere_aluno( $_POST['nome'], $data, $diretorio.$img['name'], $_POST['idturmas'], $_POST['senha']);
+       Insere_aluno( $_POST['nome'], $data, $diretorio.sanitize_filename($img['name']), $_POST['idturmas'], $_POST['senha']);
     
     // volta para a listagem
     header('Location: administrador.php');
