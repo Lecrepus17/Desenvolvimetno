@@ -30,9 +30,9 @@ $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 if ($tipo == 'aluno'){
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // formata data
-        $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
-        $turma = $_POST['idturmas'];
-        $senha = $_POST['senha'];
+        $data_nasc = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
+        /*$turma = $_POST['idturmas'];
+        $senha = $_POST['senha'];*/
         // se não tiver alguma variavel, guarda o que tinha
         if (!isset($_POST['idturmas'])){
             $turma = $_POST['idturma'];
@@ -40,11 +40,8 @@ if ($tipo == 'aluno'){
         if (!isset($_FILES['imagem'])){
             $imagem = $_POST['imagem_t'];
         }
-        if (!isset($_POST['senha'])){
-            $senha = $_POST['senha_t'];
-        }
     // altera aluno
-    altera_aluno( $_POST['nome'], $data_formatada, $imagem, $turma, $id, $senha);
+    altera_aluno( $_POST['nome'], $data_nasc, $_POST['foto'], $_POST['idturmas'], $_POST['idaluno'], $_POST['senha']);
     // Redireciona para listagem
     header('Location: administrador.php');
     die;
