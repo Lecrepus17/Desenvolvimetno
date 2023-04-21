@@ -91,7 +91,7 @@ require('pdo.inc.php');
     //----------------------------------------------------------------------------------
   
 //altera aluno
-function altera_aluno($nome_aluno, $data_nasc,  $foto, $idturma, $id, $senha)
+function altera_aluno($nome_aluno, $data_nasc, $foto, $idturma, $id, $senha)
 {
 require('pdo.inc.php');
        
