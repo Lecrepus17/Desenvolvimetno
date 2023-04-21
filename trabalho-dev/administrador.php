@@ -10,9 +10,8 @@
     $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
-    echo $twig->render('administrador/index.html', [
+      echo $twig->render('administrador/index.html', [
           'user' => $sql,
      
         ]);
         die;
-
