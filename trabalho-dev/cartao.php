@@ -1,47 +1,38 @@
 <?php
 require('twig_carregar.php');
 require('pdo.inc.php');
+require ('func/qrcode.php');
+
 
 $nome = $_POST['nome'] ?? false;
 $senha = $_POST['senha'] ?? false;
 
-$sql = $conex->prepare('SELECT * FROM alunos WHERE nome_aluno = :nome AND senha = :senha');
+$sql = $conex->prepare('SELECT idalunos FROM alunos WHERE nome_aluno = :nome AND senha = :senha');
 $sql->bindParam(':nome', $nome);
 $sql->bindParam(':senha', $senha);
 $sql->execute();
 $sql = $sql->fetch(PDO::FETCH_ASSOC);
 
-
-$turma = $conex->prepare('SELECT * FROM turmas  join alunos on alunos.turmas_idturmas = turmas.idturmas WHERE alunos.senha = :senha AND alunos.nome_aluno = :nome');
-$turma->bindParam(':senha', $senha);
-$turma->bindParam(':nome', $nome);
-$turma->execute();   
-$turma = $turma->fetch(PDO::FETCH_ASSOC);
+$id = $_GET['indice'] ?? $sql['idalunos'] ?? false;
 
 
+$nivel = $conex->prepare('SELECT * FROM nivel_ensino JOIN cursos on nivel_ensino.idNivel_ensino = cursos.nivel_ensino_idNivel_ensino JOIN turmas on cursos.idcursos = turmas.cursos_idcursos join alunos on alunos.turmas_idturmas = turmas.idturmas WHERE alunos.idalunos = :id');
+$nivel->bindParam(':id', $id);
 
-$curso = $conex->prepare('SELECT * FROM cursos JOIN turmas on cursos.idcursos = turmas.cursos_idcursos join alunos on alunos.turmas_idturmas = turmas.idturmas WHERE alunos.senha = :senha AND alunos.nome_aluno = :nome');
-$curso->bindParam(':senha', $senha);
-$curso->bindParam(':nome', $nome);
-$curso->execute();   
-$curso = $curso->fetch(PDO::FETCH_ASSOC);
-
-
-$nivel = $conex->prepare('SELECT * FROM nivel_ensino JOIN cursos on nivel_ensino.idNivel_ensino = cursos.nivel_ensino_idNivel_ensino JOIN turmas on cursos.idcursos = turmas.cursos_idcursos join alunos on alunos.turmas_idturmas = turmas.idturmas WHERE alunos.senha = :senha AND alunos.nome_aluno = :nome');
-$nivel->bindParam(':senha', $senha);
-$nivel->bindParam(':nome', $nome);
 $nivel->execute();  
 $nivel = $nivel->fetch(PDO::FETCH_ASSOC);
 
 
 
-  if(($sql) && ($turma) && ($nivel) && ($curso)){
+$id = $sql['idalunos'];
+// Informação a ser codificada no QR Code
+$qr = qrcode($id);
+
+
+  if(($nivel)){
+
     echo $twig->render('cartao.html', [
-          'user' => $sql, 
-          'turma' => $turma,
-          'nivel' => $nivel,
-          'curso' => $curso,
-          
+          'user' => $nivel,
           ]);
         die;
 }else{
