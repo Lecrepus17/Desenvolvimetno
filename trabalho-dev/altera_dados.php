@@ -16,7 +16,7 @@ if(isset($_FILES['imagem'])){
     if($diretorio.$img['name'] != $diretorio){
         $imagem = $diretorio.$img['name'];
       }
-          else{ $imagem = $_POST['imagem_t'];}
+          /*else{ $imagem = $_POST['imagem_t'];}*/
 }
 
 
@@ -33,18 +33,18 @@ if ($tipo == 'aluno'){
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
         $turma = $_POST['idturmas'];
         $senha = $_POST['senha'];
-        
         // se não tiver alguma variavel, guarda o que tinha
+        
         if (!isset($_POST['idturmas'])){
             $turma = $_POST['idturma'];
         }
-        if (!isset($_FILES['imagem'])){
+        if (!isset($_POST['imagem'])){
             $imagem = $_POST['imagem_t'];
         }
-        if (!isset($_POST['senha_t'])){
-            $senha = $_POST['senha'];
+        if (!isset($_POST['senha'])){
+            $senha = $_POST['senha_t'];
         }
-
+        
     // altera aluno
     altera_aluno( $_POST['nome'], $data_formatada, $imagem, $turma, $id, $senha);
     // Redireciona para listagem
