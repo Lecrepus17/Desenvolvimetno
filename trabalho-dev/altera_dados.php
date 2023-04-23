@@ -1,4 +1,3 @@
-
 <?php
 require('twig_carregar.php');
 require('pdo.inc.php');
@@ -7,9 +6,8 @@ require('func/function.php');
 require('verifica_session.php');
 
 
-/*if(!isset($_GET['indice'])){
-    header("Location: index.php");
-}*/
+
+if(isset($_SESSION['nome'])){
 
 if(isset($_FILES['imagem'])){
     $img = $_FILES['imagem'];
@@ -23,7 +21,7 @@ if(isset($_FILES['imagem'])){
           else{ $imagem = $_POST['imagem_t'];}
 }
 
-if(isset($_SESSION['nome'])){
+
     
 // se tiver imagem, altero e processo
 
@@ -169,13 +167,6 @@ elseif($tipo == 'admin'){
         'titulo' => 'Alterar',
         ]);
       die;}
-
-      die;
 };
-}else{
-    header('location:login.php');
-    die;
+die;
 }
-// Vejo se não passei índice, volta para a listagem
-
-
