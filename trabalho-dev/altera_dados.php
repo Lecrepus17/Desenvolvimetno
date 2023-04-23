@@ -4,20 +4,30 @@ require('twig_carregar.php');
 require('pdo.inc.php');
 require('func/sanitize_filename.php');
 require('func/function.php');
-// Vejo se não passei índice, volta para a listagem
-if(!isset($_GET['indice'])){
+require('verifica_session.php');
+
+
+/*if(!isset($_GET['indice'])){
     header("Location: index.php");
-}
-// se tiver imagem, altero e processo
+}*/
+
 if(isset($_FILES['imagem'])){
     $img = $_FILES['imagem'];
+    $arquivo = sanitize_filename($_FILES['imagem']['name']);
     $diretorio = 'assets/imagem_user/';
+    move_uploaded_file($img['tmp_name'], $diretorio . $arquivo);
 
     if($diretorio.$img['name'] != $diretorio){
         $imagem = $diretorio.$img['name'];
       }
-          /*else{ $imagem = $_POST['imagem_t'];}*/
+          else{ $imagem = $_POST['imagem_t'];}
 }
+
+if(isset($_SESSION['nome'])){
+    
+// se tiver imagem, altero e processo
+
+
 
 
 //Pega o índice e o tipo de função
@@ -32,16 +42,13 @@ if ($tipo == 'aluno'){
         // formata data
         $data_formatada = date('Y-m-d', strtotime(str_replace('/', '-', $_POST['data_nasc'])));
         $turma = $_POST['idturmas'];
-        $senha = $_POST['senha'];
+        $senha = $_POST['senha'];    
         // se não tiver alguma variavel, guarda o que tinha
         
         if (!isset($_POST['idturmas'])){
             $turma = $_POST['idturma'];
         }
-        if (!isset($_POST['imagem'])){
-            $imagem = $_POST['imagem_t'];
-        }
-        if (!isset($_POST['senha'])){
+        if (empty($_POST['senha'])){
             $senha = $_POST['senha_t'];
         }
         
@@ -162,5 +169,13 @@ elseif($tipo == 'admin'){
         'titulo' => 'Alterar',
         ]);
       die;}
+
+      die;
 };
+}else{
+    header('location:login.php');
+    die;
+}
+// Vejo se não passei índice, volta para a listagem
+
 

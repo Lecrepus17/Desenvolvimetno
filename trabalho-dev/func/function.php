@@ -91,7 +91,7 @@ require('pdo.inc.php');
     //----------------------------------------------------------------------------------
   
 //altera aluno
-function altera_aluno($nome_aluno, $data_nasc, $imagem, $idturma, $id, $senha)
+function altera_aluno($nome_aluno, $data_nasc, $foto, $idturma, $id, $senha)
 {
 require('pdo.inc.php');
        
@@ -101,7 +101,7 @@ require('pdo.inc.php');
 
         $sql->bindParam(':nome', $nome_aluno);
         $sql->bindParam(':nasc', $data_nasc);
-        $sql->bindParam(':foto', $imagem);
+        $sql->bindParam(':foto', $foto);
         $sql->bindParam(':idturma', $idturma);
         $sql->bindParam(':id', $id);      
         $sql->bindParam(':senha', $senha);

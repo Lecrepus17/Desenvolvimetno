@@ -3,12 +3,15 @@ require('twig_carregar.php');
 require('pdo.inc.php');
 require('func/sanitize_filename.php');
 require('func/function.php');
+require('verifica_session.php');
 
 // Vejo se não passei índice, volta para a listagem
 if(!isset($_GET['indice'])){
     header("Location:administrador.php");
 }
-//Pega o índice e o tipo de função
+
+if($_SESSION['nome']){
+    //Pega o índice e o tipo de função
 $id =  $_GET['indice'] ?? false;
 $tipo = $_GET['tipo'] ?? false;
 
@@ -46,6 +49,8 @@ elseif($tipo == 'admin'){
     header('Location:administrador.php');
     die;
 }
+}
+
 
 
 ?>

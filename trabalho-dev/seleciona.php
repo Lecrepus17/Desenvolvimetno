@@ -1,7 +1,10 @@
 <?php
     require('twig_carregar.php');
     require('pdo.inc.php');
-    // Vejo se não passei índice, volta para a listagem
+    require('verifica_session.php');
+
+    if($_SESSION['nome']){
+        // Vejo se não passei índice, volta para a listagem
     if(!isset($_GET['tipo'])){
         header("Location: index.php");
     }
@@ -163,3 +166,5 @@
                 'titulo' => 'Exclui admin',
         ]);
         die;}}
+    }
+    

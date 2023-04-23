@@ -3,7 +3,9 @@ require './phpqrcode/qrlib.php';
 
 function qrcode ($id){
 // Informação a ser codificada no QR Code
+
 $data = "https://desenvolvimentno.000webhostapp.com/trabalho-dev/cartao.php?indice=$id";
+
 
 // Caminho e nome do arquivo que irá conter o QR Code
 $file = "assets/qrcodes/qr$id.png";

@@ -3,6 +3,12 @@ require('twig_carregar.php');
 require('pdo.inc.php');
 require('func/sanitize_filename.php');
 require('func/function.php');
+require('verifica_session.php');
+
+
+
+if(isset($_SESSION['nome'])){
+    
 // seta o tipo de função
 $tipo = $_POST['tipo'] ?? $_GET['tipo'] ?? false;
 
@@ -122,5 +128,8 @@ if($tipo == 'admin'){
         'titulo' => 'Incluir',
         ]);
       die;}
-};
 
+      
+};
+die;
+}
