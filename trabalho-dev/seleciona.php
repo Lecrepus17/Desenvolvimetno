@@ -3,8 +3,7 @@
     require('pdo.inc.php');
     require('verifica_session.php');
 
-    if($_SESSION['nome']){
-        // Vejo se não passei índice, volta para a listagem
+
     if(!isset($_GET['tipo'])){
         header("Location: index.php");
     }
@@ -19,7 +18,7 @@
     if ($tipo == 'turma'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para alterar
         header("Location:altera_dados.php?tipo=turma&indice=$resultado.php");
         die;
@@ -39,7 +38,7 @@
     elseif($tipo == 'curso'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para alterar
         header("Location:altera_dados.php?tipo=curso&indice=$resultado.php");
         die;
@@ -58,7 +57,7 @@
     elseif($tipo == 'nivel'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para alterar
         header("Location:altera_dados.php?tipo=nivel&indice=$resultado.php");
         die; 
@@ -77,7 +76,7 @@
     elseif($tipo == 'admin'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para alterar
         header("Location:altera_dados.php?tipo=admin&indice=$resultado.php");
         die;
@@ -96,7 +95,7 @@
     elseif($tipo == 'turmaexclui'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para excluir
         header("Location:excluir.php?tipo=turma&indice=$resultado.php");
         die;
@@ -115,7 +114,7 @@
     elseif($tipo == 'cursoexclui'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para excluir
         header("Location:excluir.php?tipo=curso&indice=$resultado.php");
         die;
@@ -134,7 +133,7 @@
     elseif($tipo == 'nivelexclui'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para excluir
         header("Location:excluir.php?tipo=nivel&indice=$resultado.php");
         die;
@@ -152,7 +151,7 @@
     elseif($tipo == 'adminexclui'){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
         // pega resultado
-        $resultado = $_POST['resultado'];
+        $resultado = $_POST['resultado'] ?? false;
         // envia para excluir 
         header("Location:excluir.php?tipo=admin&indice=$resultado.php");
         die;
@@ -166,5 +165,5 @@
                 'titulo' => 'Exclui admin',
         ]);
         die;}}
-    }
+    
     
